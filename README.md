@@ -14,14 +14,17 @@ This app allows users to view books from different NYTimes best sellers lists. U
 -Anjana Hengaju
 
 ## APIs to be Used
--New York Times books API
+- New York Times books API
 
--Amazon Product Advertising API
+- Amazon Product Advertising API
 
--(Possible) Gmail API
+- (Possible) Gmail API
 
 ## Task Breakdown
 Design & UX - Chris
+
 UX & Backend - Peter
+
 UX & Frontend - Anjana
+
 UX & Frontend - Ben
