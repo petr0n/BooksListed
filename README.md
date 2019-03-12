@@ -20,3 +20,13 @@ This app allows users to view books from different NYTimes best sellers lists. U
 - UX & Backend - Peter
 - UX & Frontend - Anjana
 - UX & Frontend - Ben
+
+
+### Ideas for user process flow
+View one: user clicks topic in topic list - from NYT API
+
+View two: display all books in topic list ordered by best seller - from NYT API 
+
+View three: detail of selected book including some details on book - Amazon API 
+
+View four: allow user to email book title and link to amazon to self - Gmail API
