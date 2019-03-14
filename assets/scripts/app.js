@@ -104,6 +104,7 @@ let getData = (function(){
         });
     }
 
+
     function initAutoComplete(){
         $('input.autocomplete').autocomplete({
             data: listOjb,
@@ -122,3 +123,4 @@ let getData = (function(){
     
 })();
 getData.init(); 
+
