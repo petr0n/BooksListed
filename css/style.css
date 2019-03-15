@@ -1,12 +1,124 @@
-nav > .top{
-    background-color:beige;
-    color: black;
-
-}
-.navbar{
-
-}
-
-.name{
-    
-}
+/* page 1 styles */
+.Header {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1368px;
+    height: 1370px;
+    z-index: 21;
+  }
+  .Search_NYTimes_Best_Sellers_List {
+    font-size: 25px;
+    font-family: "Lato";
+    color: rgb(41, 41, 41);
+    line-height: 1.24;
+    text-align: center;
+    position: absolute;
+    left: 480.312px;
+    top: 540.5px;
+    z-index: 20;
+  }
+  
+  .Search_Bar {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1368px;
+    height: 1370px;
+    z-index: 17;
+  }
+  .Serach_Bar {
+    border-width: 1.5px;
+    border-color: rgb(140, 140, 140);
+    border-style: solid;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(0, 0, 0);
+    border-radius: 7px;
+    background-color: rgb(235, 235, 235);
+    opacity: 0.35;
+    box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.1),0px 26px 30px 0px rgba(0, 0, 0, 0.15),0px 28px 45px 0px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    left: 310px;
+    top: 639px;
+    width: 740px;
+    height: 111px;
+    z-index: 16;
+  }
+  .Drop_Down_List {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1368px;
+    height: 1370px;
+    z-index: 15;
+  }
+  .Paperback_Nonfiction {
+    font-size: 25px;
+    font-family: "Lato";
+    color: rgb(0, 76, 153);
+    font-weight: bold;
+    line-height: 1.24;
+    text-align: left;
+    position: absolute;
+    left: 346.984px;
+    top: 1099.463px;
+    z-index: 14;
+  }
+  .Mass_Market_Paperback {
+    font-size: 25px;
+    font-family: "Lato";
+    color: rgb(0, 76, 153);
+    font-weight: bold;
+    line-height: 1.24;
+    text-align: left;
+    position: absolute;
+    left: 346.984px;
+    top: 1029.463px;
+    z-index: 13;
+  }
+  .Hardcover_Non_Fiction {
+    font-size: 25px;
+    font-family: "Lato";
+    color: rgb(0, 76, 153);
+    font-weight: bold;
+    line-height: 1.24;
+    text-align: left;
+    position: absolute;
+    left: 346.984px;
+    top: 928.5px;
+    z-index: 12;
+  }
+  .Hardcover_Fiction {
+    font-size: 25px;
+    font-family: "Lato";
+    color: rgb(0, 76, 153);
+    font-weight: bold;
+    line-height: 1.24;
+    text-align: left;
+    position: absolute;
+    left: 346.984px;
+    top: 858.5px;
+    z-index: 11;
+  }
+  .Drop_Down_Box {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1368px;
+    height: 1370px;
+    z-index: 9;
+  }
+  .Drop_Down_Box {
+    border-width: 2px;
+    border-color: rgb(225, 51, 26);
+    border-style: solid;
+    border-radius: 2px;
+    position: absolute;
+    left: 310px;
+    top: 826px;
+    width: 738px;
+    height: 304px;
+    z-index: 8;
+  }
+  /* end of page 1 styles */
