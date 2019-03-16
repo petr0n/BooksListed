@@ -1,7 +1,13 @@
 .card.horizontal.detail > .card-image > .image {
-  height: 210px;
+  height: 200px;
   width: auto;
+  padding: 0;
 }
+
+.card.detail > .card-image.size {
+   
+    padding: 0;
+  }
 .card > .card-stacked > .card-content > .title {
   font-weight: bolder;
   font-family: Georgia, 'Times New Roman', Times, serif;

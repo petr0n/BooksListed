@@ -127,28 +127,22 @@ let getData = (function() {
 getData.init();
 
 const detailTemplate = `
-<div class="card horizontal detail">
-    <div class="row">
-        <div class="col s12 m2">
-            <div class="card-image">
-                <img
-                class="image"
-                src=""
-                />
-            </div>
-        </div>
-        <div class="col s12 m10">
-            <div class="card-stacked">
-                <div class="card-content book-info">
-                    <p class="title"></p>
-                    <p class="writer"></p>
-                </div>
-                <div class="card-action">
-                    <p class="description"></p>
-                </div>
-            </div>
-        </div>
+<div class="card detail row">
+  <div class="card-image col s12 m3 l2 size">
+    <img
+      class="image"
+      src=""
+    />
+  </div>
+  <div class="card-stacked col s12 m9 l10 ">
+    <div class="card-content book-info">
+      <p class="title"></p>
+      <p class="writer"></p>
     </div>
+    <div class="card-action">
+      <p class="description"></p>
+    </div>
+  </div>
 </div>
 `;
 
