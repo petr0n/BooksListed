@@ -65,7 +65,7 @@ let getData = (function(){
 
     let init = function (){
         getBookList('','');
-        initAutoComplete();
+        // initAutoComplete();
     }
 
     // may delete this since we have the list already
@@ -98,7 +98,7 @@ let getData = (function(){
             // console.log(listTitle);
             if (books) {
                 books.map(function(book){
-                    console.log(book.title);
+                    //console.log(book.title);
                 });
             }
         });
