@@ -1,1 +1,1 @@
-Header set Access-Control-Allow-Origin 'origin-list'
+Header Set Access-Control-Allow-Origin "*"

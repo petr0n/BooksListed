@@ -3,32 +3,32 @@
 let apiUrl = 'https://www.goodreads.com/search/index.xml?key=';
 let apiKey = 'ceicGimSCSzGALUEWdy1Q';
 
-// http://cors-anywhere.herokuapp.com/https://www.goodreads.com/book/show/BOOK_ID.xml?key=YOUR_KEY
+// https://cors-anywhere.herokuapp.com/https://www.goodreads.com/book/show/BOOK_ID.xml?key=YOUR_KEY
 $.ajax({
-    url: 'http://cors-anywhere.herokuapp.com/' + apiUrl + apiKey + '&q=The+Terror',
+    // url: 'https://cors-anywhere.herokuapp.com/' + apiUrl + apiKey + '&q=The+Terror',
+    url: apiUrl + apiKey + '&q=Jaws',
     method: 'POST',
-    dataType: 'text'
-}).then(function(response){
-    
-    // xmlString = (new XMLSerializer()).serializeToString(response);
-    
-    xml = response.replace(/(\r\n|\n|\r|[ ]{2,})/gm,"");
-    //console.log(xml);
-    
-    parser = new DOMParser();
-    xmlDoc = parser.parseFromString(xml,"text/xml");
-    // //var jsonText = JSON.stringify(xmlToJson(response));
-    //console.log(xmlDoc);
-    console.log(xmlToJson(xmlDoc));
-    $('#json').html(JSON.stringify(xmlToJson(xmlDoc)));
-    // console.log(JSON.stringify(xmlToJson(response)));
-    // xmlDoc = $.parseXML(response),
-    // $response = $(xmlDoc);
-    // console.log($response);
+    dataType: 'text',
+    headers: {  'Access-Control-Allow-Origin': 'http://dev.bookslisted.com' }
+}).then(function(response, textStatus, jqXHR){
+    console.log('response done');
+    console.log(textStatus);
+    console.log(jqXHR);
 
-    //parser = new DOMParser();
-    // xmlDoc = parser.parseFromString(response,"text/xml");
-    // console.log(xmlDoc);
+    
+    // xml = response.replace(/(\r\n|\n|\r|[ ]{2,})/gm,""); // removes whitespace
+    
+    // parser = new DOMParser();
+    // xmlDoc = parser.parseFromString(xml,"text/xml");
+    // console.log(xmlToJson(xmlDoc));
+    // json_response = JSON.stringify(xmlToJson(xmlDoc));
+    // $('#json').html(json_response);
+
+}).always(function(response, textStatus, jqXHR){
+    console.log('response always');
+    console.log(response);
+    console.log(jqXHR);
+    
 });
 /// Changes XML to JSON
 // Modified version from here: http://davidwalsh.name/convert-xml-json
