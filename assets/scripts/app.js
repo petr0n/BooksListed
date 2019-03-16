@@ -97,7 +97,7 @@ let getData = (function() {
     }).then(function(res) {
       let listTitle = res.results.list_name;
       let books = res.results.books;
-      // console.log(books)
+      console.log(books);
       if (books) {
         books.map(function(book) {
           console.log(book.title);
@@ -127,15 +127,15 @@ let getData = (function() {
 getData.init();
 
 const detailTemplate = `
-<div class="card horizontal detail">
-  <div class="card-image">
+<div class="card detail row">
+  <div class="card-image col s12 m3 l2 size">
     <img
       class="image"
       src=""
     />
   </div>
-  <div class="card-stacked">
-    <div class="card-content">
+  <div class="card-stacked col s12 m9 l10 ">
+    <div class="card-content book-info">
       <p class="title"></p>
       <p class="writer"></p>
     </div>
@@ -153,4 +153,12 @@ function createCard(book) {
   detail.find(".description").text(book.description);
   detail.find(".image").attr("src", book.book_image);
   $(".details").append(detail);
+
+  console.log(book);
+  detail.click(function() {
+    const publishDate = $("<p>").text(book.published_date);
+    detail.find(".book-info").append(publishDate);
+    console.log("click")
+
+  });
 }
