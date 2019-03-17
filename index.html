@@ -11,70 +11,82 @@
 </head>
 
 <body>
-	<nav>
-		<div class="nav-wrapper top">
-			<div class="row">
-				<a href="" class="brand-logo center name">BookListed</a>
-			</div>
-			<div class="row center summary ">
-				Search NYTimes best sellers lists
-			</div>
-		</div>
-	</nav>
-	<div class="container">
-		<div class="row">
-			<div class="col s3">
-				<div class="col s6 mainlogo"></div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col s3"></div>
-			<div class="col s6">
-				<div class="row">
-					<div class="input-field col s12">
-						<i class="material-icons prefix">library_books</i>
-						<input type="text" id="autocomplete-input" class="autocomplete" />
-						<label for="autocomplete-input">Pick a Category</label>
-						<input type="text" class="datepicker" />
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div>
-		<!-- List of Book  -->
-		<div class="container">
-			<div class="col s12 m7 details">
-			</div>
-		</div>
-	</div>
 
-	<div class="card horizontal detail">
-		<div class="row">
-			<div class="col s12 m2">
-				<div class="card-image">
-					<img class="image" src="" />
+	<!-- search -->
+	<section class="search">
+		<!-- <nav>
+			<div class="nav-wrapper top">
+				<div class="row">
+					<a href="" class="brand-logo center name">BookListed</a>
+				</div>
+				<div class="row center summary ">
+					Search NYTimes best sellers lists
 				</div>
 			</div>
-			<div class="col s12 m10">
-				<div class="card-stacked">
-					<div class="card-content book-info">
-						<p class="title"></p>
-						<p class="writer"></p>
-					</div>
-					<div class="card-action">
-						<p class="description"></p>
+		</nav> -->
+		<div class="container">
+			<div class="row">
+				<div class="col s3">
+					<div class="col s6 mainlogo"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s6">
+					<div class="row">
+						<div class="input-field col s12">
+							<i class="material-icons prefix">library_books</i>
+							<input type="text" id="autocomplete-input" class="autocomplete" />
+							<label for="autocomplete-input">Pick a Category</label>
+							<input type="text" class="datepicker" />
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
+	
+	
+	
+	<!-- List of Book  -->
+	<section class="book-list">
+		<div>
+			<div class="container">
+				<div class="col s12 m7 details">
+				</div>
+			</div>
+		</div>
+
+		<div class="card horizontal detail">
+			<div class="row">
+				<div class="col s12 m2">
+					<div class="card-image">
+						<img class="image" src="" />
+					</div>
+				</div>
+				<div class="col s12 m10">
+					<div class="card-stacked">
+						<div class="card-content book-info">
+							<p class="title"></p>
+							<p class="writer"></p>
+						</div>
+						<div class="card-action">
+							<p class="description"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
 	<!-- Display a book -->
+	<section class="book-detail">
 
-	<!-- Carousel-->
-	<div class="carousel" id="suggest">
-	</div>
+		
+		<!-- Carousel-->
+		<div class="carousel" id="suggest"></div>
+
+	</section>
+
 
 	<footer>
 		<div class="copy">BooksListed an app build by Anjana N., Chris E., Ben P. and Peter A.</div>
@@ -88,5 +100,4 @@
 	<script src="assets/scripts/app.js"></script>
 	<script src="assets/scripts/goodread-api.js"></script>
 </body>
-
 </html>
