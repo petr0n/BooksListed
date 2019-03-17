@@ -82,6 +82,7 @@ let getData = (function () {
 			console.log(books);
 			if (books) {
 				$('section .search-wrapper').addClass('list-selected');
+				$('.mainlogo').addClass('small'); 
 				$('section.book-list').slideDown(300, function(){
 					books.map(function (book) {
 						// console.log(book.title);
@@ -109,7 +110,7 @@ let getData = (function () {
 			$(".datepicker").datepicker({
 				setDefaultDate: true,
 				autoClose: true,
-				format: 'yyyy mm dd',
+				format: 'yyyy-mm-dd',
 				onSelect: function(date){
 					getBookListFromAPI(date,val);
 				}

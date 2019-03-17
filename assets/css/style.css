@@ -23,6 +23,10 @@ h1, h2, h3, h4, h5 {
 section {
   margin-bottom: 40px;
 }
+
+.search-container {
+  width: 300px;
+}
 .mainlogo {
   background-image: url('../../assets/images/logo.png');
   background-position: center;
@@ -30,6 +34,12 @@ section {
   background-repeat: no-repeat;
   height: 134px;
   width: 300px;
+}
+
+.mainlogo.small {
+  height: 84px;
+  margin: 0 auto;
+  width: 190px;
 }
 
 section.search .search-wrapper {
