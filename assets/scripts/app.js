@@ -66,7 +66,6 @@ let getData = (function () {
 	});
 
 	let init = function () {
-		getBookListFromAPI("", "");
 		initAutoComplete();
 	};
 
@@ -82,9 +81,12 @@ let getData = (function () {
 			let books = res.results.books;
 			console.log(books);
 			if (books) {
-				books.map(function (book) {
-					console.log(book.title);
-					createCard(book);
+				$('section .search-wrapper').addClass('list-selected');
+				$('section.book-list').slideDown(300, function(){
+					books.map(function (book) {
+						// console.log(book.title);
+						createCard(book);
+					});
 				});
 			}
 		});
@@ -102,14 +104,16 @@ let getData = (function () {
 	}
 
 	function initDatePicker(val) {
-		console.log(val);
-		$(".datepicker").datepicker({
-			setDefaultDate: true,
-			autoClose: true,
-			format: 'yyyy mm dd',
-			onSelect: function(date){
-				getBookListFromAPI(date,'');
-			}
+		$('.datepicker-wrapper').slideDown(200, function(){
+			// console.log(val);
+			$(".datepicker").datepicker({
+				setDefaultDate: true,
+				autoClose: true,
+				format: 'yyyy mm dd',
+				onSelect: function(date){
+					getBookListFromAPI(date,val);
+				}
+			});
 		});
 	}
 	return {
@@ -145,13 +149,13 @@ function createCard(book) {
 	detail.find(".writer").text(book.contributor);
 	detail.find(".description").text(book.description);
 	detail.find(".image").attr("src", book.book_image);
-	$(".details").append(detail);
+	$(".book-list-wrapper").append(detail);
 
-	// console.log(book);
-	detail.click(function () {
-		const publishDate = $("<p>").text(book.published_date);
-		detail.find(".book-info").append(publishDate);
-		// console.log("click")
+	// // console.log(book);
+	// detail.on('click', function () {
+	// 	const publishDate = $("<p>").text(book.published_date);
+	// 	detail.find(".book-info").append(publishDate);
+	// 	// console.log("click")
 
-	});
+	// });
 }
