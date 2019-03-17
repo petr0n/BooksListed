@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 	<title>Book Listed</title>
+	<link rel="icon" href="assets/images/favicon.png" sizes="16x16 32x32" type="image/png">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 	<link rel="stylesheet" href="assets/css/style.css">
@@ -24,21 +25,21 @@
 				</div>
 			</div>
 		</nav> -->
-		<div class="container">
-			<div class="row">
-				<div class="col s3">
-					<div class="col s6 mainlogo"></div>
+		<div class="search-wrapper">
+			<div class="search-container">
+				<div class="row">
+					<div class="col s12">
+						<div class="mainlogo"></div>
+					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col s6">
-					<div class="row">
-						<div class="input-field col s12">
-							<i class="material-icons prefix">library_books</i>
+				<div class="row">
+					<div class="col s12">
+						<div class="input-field">
+							<!-- <i class="material-icons prefix">library_books</i> -->
 							<input type="text" id="autocomplete-input" class="autocomplete" />
 							<label for="autocomplete-input">Pick a Category</label>
 						</div>
-						<div class="input-field">
+						<div class="input-field datepicker-wrapper">
 							<input type="text" class="datepicker" />
 						</div>
 					</div>

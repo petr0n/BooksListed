@@ -108,13 +108,13 @@ let getData = (function () {
 			autoClose: true,
 			format: 'yyyy mm dd',
 			onSelect: function(date){
-				getBookListFromAPI(date,);
+				getBookListFromAPI(date,'');
 			}
 		});
 	}
 	return {
 		init: init,
-		getBookList: getBookList
+		getBookList: getBookListFromAPI
 	};
 })();
 getData.init();
@@ -147,11 +147,11 @@ function createCard(book) {
 	detail.find(".image").attr("src", book.book_image);
 	$(".details").append(detail);
 
-	console.log(book);
+	// console.log(book);
 	detail.click(function () {
 		const publishDate = $("<p>").text(book.published_date);
 		detail.find(".book-info").append(publishDate);
-		console.log("click")
+		// console.log("click")
 
 	});
 }
