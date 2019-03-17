@@ -213,5 +213,4 @@ let apiLibrary = (function () {
 		getAuthorBooks: getAuthorBooks
 	};
 
-
 })();
