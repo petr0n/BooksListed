@@ -99,6 +99,8 @@ let getData = (function () {
 		lists.map(function (item) { listOjb[item] = null; });
 		$("input.autocomplete").autocomplete({
 			data: listOjb,
+			minLength: 0,
+			autoClose: false,
 			onAutocomplete: initDatePicker
 		});
 	}

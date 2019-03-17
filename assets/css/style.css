@@ -41,16 +41,20 @@ section.search .search-wrapper {
     transition: all .3s ease-in;
 }
 section.search .search-wrapper.list-selected {
-  height: 200px;
+  height: 280px;
   align-items: flex-start;
 }
 
 .search-wrapper input[type=text].autocomplete {
   border: 1px solid var(--main-gray);
   background-color: var(--main-gray-lt);
+  box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.1);
 }
 .search-wrapper input[type=text].autocomplete:focus {
   border-bottom: 1px solid var(--main-red);
+}
+section.search .search-wrapper .input-field>label {
+  padding-left: 10px;
 }
 .search-wrapper .dropdown-content li>a, 
 .search-wrapper .dropdown-content li>span {
