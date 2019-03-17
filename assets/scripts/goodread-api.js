@@ -4,7 +4,6 @@ apiUrl = 'https://www.goodreads.com/author/list.xml?key=ceicGimSCSzGALUEWdy1Q&id
 
 
 function getBookDetails(title){
-    
     let t = title != '' ? title : 'Cujo';
     let apiUrl = 'https://www.goodreads.com/search/index.xml?key=ceicGimSCSzGALUEWdy1Q&q=' + t;
     $.ajax({
@@ -20,6 +19,7 @@ function getBookDetails(title){
 
 function getAuthorBooks(id){
     let t = title != '' ? title : 720; // John Grisham
+    let authorBookObj = {};
     $.ajax({
         url: 'http://peterskitchen.co/xml2JSON.php',
         method: 'POST',

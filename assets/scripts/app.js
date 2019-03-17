@@ -56,45 +56,11 @@ let getData = (function () {
 		"Sports",
 		"Travel"
 	];
-	// default options
-	const nyt_endpoint = "https://api.nytimes.com/svc/books/v3/";
-	// let nyt_listParams = 'lists/2019-01-01/hardcover-fiction.json?';
-	const nyt_key = "api-key=jGJGGPp2j3xzgOmII98GpJxgukWxBnS3";
-	let listOjb = {};
-	lists.map(function (item) {
-		listOjb[item] = null;
-	});
 
 	let init = function () {
 		initAutoComplete();
 	};
 
-	function getBookListFromAPI(listDate, listName) {
-		let date = listDate != "" ? listDate : "2019-01-01";
-		let name = listName != "" ? listName : "hardcover-fiction";
-		let url =
-			nyt_endpoint + "lists/" + listDate + "/" + name + ".json?" + nyt_key;
-		$.ajax({
-			url: url
-		}).then(function (res) {
-			let listTitle = res.results.list_name;
-			let books = res.results.books;
-			console.log(books);
-			if (books) {
-				$('section .search-wrapper').addClass('list-selected');
-				$('.mainlogo').addClass('small'); 
-				$('section.book-list').slideDown(300, function(){
-					books.map(function (book) {
-						// console.log(book.title);
-						createCard(book);
-					});
-				});
-			}
-		});
-	}
-
-	
-	
 	function initAutoComplete() {
 		let listOjb = {}
 		lists.map(function (item) { listOjb[item] = null; });
@@ -119,46 +85,112 @@ let getData = (function () {
 			});
 		});
 	}
+
+	function getBookListFromAPI(listDate, listName) {
+		const nyt_endpoint = "https://api.nytimes.com/svc/books/v3/";
+		const nyt_key = "api-key=jGJGGPp2j3xzgOmII98GpJxgukWxBnS3";
+		let date = listDate != "" ? listDate : "2019-01-01";
+		let name = listName != "" ? listName : "hardcover-fiction";
+		let url =
+			nyt_endpoint + "lists/" + listDate + "/" + name + ".json?" + nyt_key;
+		$.ajax({
+			url: url
+		}).then(function (res) {
+			// let listTitle = res.results.list_name;
+			let books = res.results.books;
+			console.log(books);
+			if (books) {
+				$('section .search-wrapper').addClass('list-selected');
+				$('.mainlogo').addClass('small'); 
+				$('section.book-list').slideDown(300, function(){
+					books.map(function (book) {
+						// console.log(book.title);
+						createCard(book);
+					});
+				});
+			}
+		});
+	}
+
+	
+	const detailTemplate = `
+	<div class="card detail row">
+		<div class="card-image col s12 m3 l2 size">
+			<img
+				class="image"
+				src=""
+			/>
+		</div>
+		<div class="card-stacked col s12 m9 l10 ">
+			<div class="card-content book-info">
+				<p class="title"></p>
+				<p class="writer"></p>
+			</div>
+			<div class="card-action">
+				<p class="description"></p>
+			</div>
+		</div>
+	</div>
+	`;
+	
+	function createCard(book) {
+		const detail = $(detailTemplate);
+		detail.find(".title").text(book.title);
+		detail.find(".writer").text(book.contributor);
+		detail.find(".description").text(book.description);
+		detail.find(".image").attr("src", book.book_image);
+		
+		detail.on('click', function(e) {
+			e.preventDefault();
+
+		});
+		$(".book-list-wrapper").append(detail);
+		// // console.log(book);
+		// detail.on('click', function () {
+		// 	const publishDate = $("<p>").text(book.published_date);
+		// 	detail.find(".book-info").append(publishDate);
+		// 	// console.log("click")
+	
+		// });
+	}
+
 	return {
-		init: init,
-		getBookList: getBookListFromAPI
+		init: init
 	};
+
+
+
+
+
+	
+	
+	function getBookDetails(title){
+		const apiUrl = 'https://www.goodreads.com/author/list.xml?key=ceicGimSCSzGALUEWdy1Q&id=721';
+    let t = title != '' ? title : 'Cujo';
+    let apiUrl = 'https://www.goodreads.com/search/index.xml?key=ceicGimSCSzGALUEWdy1Q&q=' + t;
+    $.ajax({
+        url: 'http://peterskitchen.co/xml2JSON.php',
+        method: 'POST',
+        data: { 'url': apiUrl },
+        dataType: 'text'
+    }).then(function(response){
+        console.log(response);
+    });
+}
+
+
+function getAuthorBooks(id){
+    let t = title != '' ? title : 720; // John Grisham
+    let authorBookObj = {};
+    $.ajax({
+        url: 'http://peterskitchen.co/xml2JSON.php',
+        method: 'POST',
+        data: { 'url': apiUrl },
+        dataType: 'text'
+    }).then(function(response){
+        console.log(response);
+    });
+}
+
 })();
 getData.init();
-
-const detailTemplate = `
-<div class="card detail row">
-  <div class="card-image col s12 m3 l2 size">
-    <img
-      class="image"
-      src=""
-    />
-  </div>
-  <div class="card-stacked col s12 m9 l10 ">
-    <div class="card-content book-info">
-      <p class="title"></p>
-      <p class="writer"></p>
-    </div>
-    <div class="card-action">
-      <p class="description"></p>
-    </div>
-  </div>
-</div>
-`;
-
-function createCard(book) {
-	const detail = $(detailTemplate);
-	detail.find(".title").text(book.title);
-	detail.find(".writer").text(book.contributor);
-	detail.find(".description").text(book.description);
-	detail.find(".image").attr("src", book.book_image);
-	$(".book-list-wrapper").append(detail);
-
-	// // console.log(book);
-	// detail.on('click', function () {
-	// 	const publishDate = $("<p>").text(book.published_date);
-	// 	detail.find(".book-info").append(publishDate);
-	// 	// console.log("click")
-
-	// });
-}
