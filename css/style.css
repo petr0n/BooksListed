@@ -647,6 +647,397 @@
   
     /* end page 3 mobile styles */
 
+      /* page 3 desktop styles */
+
+      .Header {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 1368px;
+        height: 2125px;
+        z-index: 41;
+      }
+      .Back_Arrow {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 1368px;
+        height: 2125px;
+        z-index: 45;
+      }
+      .back_arrow {
+        background-image: url("back arrow.png");
+        position: absolute;
+        left: 151px;
+        top: 400px;
+        width: 17px;
+        height: 30px;
+        z-index: 44;
+      }
+      
+      .Search_NYTimes_Best_Sellers_List {
+        font-size: 25px;
+        font-family: "Lato";
+        color: rgb(41, 41, 41);
+        line-height: 1.24;
+        text-align: center;
+        position: absolute;
+        left: 480.312px;
+        top: 399.5px;
+        z-index: 40;
+      }
+      .Book_One_Box {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 1368px;
+        height: 2125px;
+        z-index: 37;
+      }
+      .Content {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 1368px;
+        height: 2125px;
+        z-index: 36;
+      }
+      .Book_1_image {
+        background-image: url("Book 1 image.png");
+        position: absolute;
+        left: 147px;
+        top: 495px;
+        width: 199px;
+        height: 303px;
+        z-index: 35;
+      }
+      .John_Grisham {
+        font-size: 39.508px;
+        font-family: "Lato";
+        color: rgb(0, 76, 153);
+        line-height: 0.785;
+        text-align: left;
+        -moz-transform: matrix( 1.01245446111818,-2.6359525809356e-16,0,1.01245446111818,0,0);
+        -webkit-transform: matrix( 1.01245446111818,-2.6359525809356e-16,0,1.01245446111818,0,0);
+        -ms-transform: matrix( 1.01245446111818,-2.6359525809356e-16,0,1.01245446111818,0,0);
+        position: absolute;
+        left: 397.206px;
+        top: 568.993px;
+        z-index: 34;
+      }
+      .THE_RECKONING {
+        font-size: 49.385px;
+        font-family: "Lato";
+        color: rgb(0, 76, 153);
+        font-weight: bold;
+        line-height: 0.628;
+        text-align: left;
+        -moz-transform: matrix( 1.01245446111818,-2.6359525809356e-16,0,1.01245446111818,0,0);
+        -webkit-transform: matrix( 1.01245446111818,-2.6359525809356e-16,0,1.01245446111818,0,0);
+        -ms-transform: matrix( 1.01245446111818,-2.6359525809356e-16,0,1.01245446111818,0,0);
+        position: absolute;
+        left: 398.357px;
+        top: 511.493px;
+        z-index: 33;
+      }
+      .Lorem_ipsum_dolor_sit_amet__consectetur_adipisi {
+        font-size: 22px;
+        font-family: "Lato";
+        color: rgb(0, 76, 153);
+        line-height: 1.409;
+        text-align: left;
+        position: absolute;
+        left: 399.094px;
+        top: 683.118px;
+        width: 726px;
+        height: 144px;
+        z-index: 32;
+      }
+      .Divider_Bar {
+        background-color: rgb(204, 204, 204);
+        position: absolute;
+        left: 399px;
+        top: 626px;
+        width: 400px;
+        height: 2px;
+        z-index: 31;
+      }
+      .Box {
+        border-width: 2px;
+        border-color: rgb(225, 51, 26);
+        border-style: solid;
+        border-radius: 2px;
+        background-color: rgb(235, 235, 235);
+        position: absolute;
+        left: 117px;
+        top: 464px;
+        width: 1129px;
+        height: 358px;
+        z-index: 30;
+      }
+      .Book_Two_Box {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 1368px;
+        height: 2125px;
+        z-index: 27;
+      }
+      .Book_2_image {
+        background-image: url("Book 2 image.png");
+        position: absolute;
+        left: 147px;
+        top: 892px;
+        width: 204px;
+        height: 298px;
+        z-index: 26;
+      }
+      .George_RR_Martin {
+        font-size: 39.508px;
+        font-family: "Lato";
+        color: rgb(0, 76, 153);
+        line-height: 0.785;
+        text-align: left;
+        -moz-transform: matrix( 1.01245446111818,-2.6359525809356e-16,0,1.01245446111818,0,0);
+        -webkit-transform: matrix( 1.01245446111818,-2.6359525809356e-16,0,1.01245446111818,0,0);
+        -ms-transform: matrix( 1.01245446111818,-2.6359525809356e-16,0,1.01245446111818,0,0);
+        position: absolute;
+        left: 397.875px;
+        top: 995.339px;
+        z-index: 25;
+      }
+      .FIRE_AND_BLOOD {
+        font-size: 49.385px;
+        font-family: "Lato";
+        color: rgb(0, 76, 153);
+        font-weight: bold;
+        line-height: 0.628;
+        text-align: left;
+        -moz-transform: matrix( 1.01245446111818,-2.6359525809356e-16,0,1.01245446111818,0,0);
+        -webkit-transform: matrix( 1.01245446111818,-2.6359525809356e-16,0,1.01245446111818,0,0);
+        -ms-transform: matrix( 1.01245446111818,-2.6359525809356e-16,0,1.01245446111818,0,0);
+        position: absolute;
+        left: 399.013px;
+        top: 906.493px;
+        z-index: 24;
+      }
+      .Lorem_ipsum_dolor_sit_amet__consectetur_adipisi {
+        font-size: 22px;
+        font-family: "Lato";
+        color: rgb(0, 76, 153);
+        line-height: 1.409;
+        text-align: left;
+        position: absolute;
+        left: 399.094px;
+        top: 1078.118px;
+        width: 726px;
+        height: 144px;
+        z-index: 23;
+      }
+      .Divider_Bar {
+        background-color: rgb(204, 204, 204);
+        position: absolute;
+        left: 399px;
+        top: 1021px;
+        width: 400px;
+        height: 2px;
+        z-index: 22;
+      }
+      .Box {
+        border-width: 2px;
+        border-color: rgb(225, 51, 26);
+        border-style: solid;
+        border-radius: 2px;
+        background-color: rgb(235, 235, 235);
+        position: absolute;
+        left: 117px;
+        top: 859px;
+        width: 1129px;
+        height: 358px;
+        z-index: 21;
+      }
+      .Book_Three_Box {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 1368px;
+        height: 2125px;
+        z-index: 19;
+      }
+      .Book_Three_Image {
+        background-image: url("Book Three Image.png");
+        position: absolute;
+        left: 147px;
+        top: 1287px;
+        width: 195px;
+        height: 296px;
+        z-index: 18;
+      }
+      .Nicholas_Sparks {
+        font-size: 39.508px;
+        font-family: "Lato";
+        color: rgb(0, 76, 153);
+        line-height: 0.785;
+        text-align: left;
+        -moz-transform: matrix( 1.01245446111818,-2.6359525809356e-16,0,1.01245446111818,0,0);
+        -webkit-transform: matrix( 1.01245446111818,-2.6359525809356e-16,0,1.01245446111818,0,0);
+        -ms-transform: matrix( 1.01245446111818,-2.6359525809356e-16,0,1.01245446111818,0,0);
+        position: absolute;
+        left: 397.39px;
+        top: 1390.339px;
+        z-index: 17;
+      }
+      .EVERY_BREATH {
+        font-size: 49.385px;
+        font-family: "Lato";
+        color: rgb(0, 76, 153);
+        font-weight: bold;
+        line-height: 0.628;
+        text-align: left;
+        -moz-transform: matrix( 1.01245446111818,-2.6359525809356e-16,0,1.01245446111818,0,0);
+        -webkit-transform: matrix( 1.01245446111818,-2.6359525809356e-16,0,1.01245446111818,0,0);
+        -ms-transform: matrix( 1.01245446111818,-2.6359525809356e-16,0,1.01245446111818,0,0);
+        position: absolute;
+        left: 398.404px;
+        top: 1301.493px;
+        z-index: 16;
+      }
+      .Lorem_ipsum_dolor_sit_amet__consectetur_adipisi {
+        font-size: 22px;
+        font-family: "Lato";
+        color: rgb(0, 76, 153);
+        line-height: 1.409;
+        text-align: left;
+        position: absolute;
+        left: 399.094px;
+        top: 1473.118px;
+        width: 726px;
+        height: 144px;
+        z-index: 15;
+      }
+      .Divider_Bar {
+        background-color: rgb(204, 204, 204);
+        position: absolute;
+        left: 399px;
+        top: 1416px;
+        width: 400px;
+        height: 2px;
+        z-index: 14;
+      }
+      .Box {
+        border-width: 2px;
+        border-color: rgb(225, 51, 26);
+        border-style: solid;
+        border-radius: 2px;
+        background-color: rgb(235, 235, 235);
+        position: absolute;
+        left: 117px;
+        top: 1254px;
+        width: 1129px;
+        height: 358px;
+        z-index: 13;
+      }
+      .Book_Four_Box {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 1368px;
+        height: 2125px;
+        z-index: 11;
+      }
+      .Book_Four_Image {
+        background-image: url("Book Four Image.png");
+        position: absolute;
+        left: 151px;
+        top: 1683px;
+        width: 188px;
+        height: 295px;
+        z-index: 10;
+      }
+      .Mitch_Albom {
+        font-size: 39.508px;
+        font-family: "Lato";
+        color: rgb(0, 76, 153);
+        line-height: 0.785;
+        text-align: left;
+        -moz-transform: matrix( 1.01245446111818,-2.6359525809356e-16,0,1.01245446111818,0,0);
+        -webkit-transform: matrix( 1.01245446111818,-2.6359525809356e-16,0,1.01245446111818,0,0);
+        -ms-transform: matrix( 1.01245446111818,-2.6359525809356e-16,0,1.01245446111818,0,0);
+        position: absolute;
+        left: 397.051px;
+        top: 1809.993px;
+        z-index: 9;
+      }
+      .THE_NEST_PERSON_YOU_MEET_IN_HEAVEN {
+        font-size: 49.385px;
+        font-family: "Lato";
+        color: rgb(0, 76, 153);
+        font-weight: bold;
+        line-height: 1.154;
+        text-align: left;
+        -moz-transform: matrix( 1.01245446111818,-2.6359525809356e-16,0,1.01245446111818,0,0);
+        -webkit-transform: matrix( 1.01245446111818,-2.6359525809356e-16,0,1.01245446111818,0,0);
+        -ms-transform: matrix( 1.01245446111818,-2.6359525809356e-16,0,1.01245446111818,0,0);
+        position: absolute;
+        left: 400.271px;
+        top: 1740.152px;
+        z-index: 8;
+      }
+      .Lorem_ipsum_dolor_sit_amet__consectetur_adipisi {
+        font-size: 22px;
+        font-family: "Lato";
+        color: rgb(0, 76, 153);
+        line-height: 1.409;
+        text-align: left;
+        position: absolute;
+        left: 399.094px;
+        top: 1928.118px;
+        width: 687px;
+        height: 82px;
+        z-index: 7;
+      }
+      .Divider_Bar {
+        background-color: rgb(204, 204, 204);
+        position: absolute;
+        left: 399px;
+        top: 1869px;
+        width: 400px;
+        height: 2px;
+        z-index: 6;
+      }
+      .Box {
+        border-width: 2px;
+        border-color: rgb(225, 51, 26);
+        border-style: solid;
+        border-radius: 2px;
+        background-color: rgb(235, 235, 235);
+        position: absolute;
+        left: 117px;
+        top: 1649px;
+        width: 1129px;
+        height: 358px;
+        z-index: 5;
+      }
+      .Site_Backgrounds {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 1368px;
+        height: 2125px;
+        z-index: 3;
+      }
+      .Main {
+        background-image: url("Main.png");
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 1368px;
+        height: 2125px;
+        z-index: 2;
+      }
+       /* end page 3 desktop styles */
+
+
     /* book detail carousel styles */
 
     .Header {
