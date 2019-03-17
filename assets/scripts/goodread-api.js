@@ -1,14 +1,31 @@
 // https://www.goodreads.com/search/index.xml?key=ceicGimSCSzGALUEWdy1Q&q=Ender%27s+Game
 
-let apiUrl = 'https://www.goodreads.com/search/index.xml?key=';
-let apiKey = 'ceicGimSCSzGALUEWdy1Q';
+apiUrl = 'https://www.goodreads.com/author/list.xml?key=ceicGimSCSzGALUEWdy1Q&id=721';
 
-$.ajax({
-    url: apiUrl + apiKey + 'q='
-}).then(function(response){
-    let  parser, xmlDoc;
 
-    parser = new DOMParser();
-    xmlDoc = parser.parseFromString(text,"text/xml");
-    console.log(xmlDoc);
-});
+function getBookDetails(title){
+    
+    let t = title != '' ? title : 'Cujo';
+    let apiUrl = 'https://www.goodreads.com/search/index.xml?key=ceicGimSCSzGALUEWdy1Q&q=' + t;
+    $.ajax({
+        url: 'http://peterskitchen.co/xml2JSON.php',
+        method: 'POST',
+        data: { 'url': apiUrl },
+        dataType: 'text'
+    }).then(function(response){
+        console.log(response);
+    });
+}
+
+
+function getAuthorBooks(id){
+    let t = title != '' ? title : 720; // John Grisham
+    $.ajax({
+        url: 'http://peterskitchen.co/xml2JSON.php',
+        method: 'POST',
+        data: { 'url': apiUrl },
+        dataType: 'text'
+    }).then(function(response){
+        console.log(response);
+    });
+}

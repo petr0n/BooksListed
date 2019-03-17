@@ -66,11 +66,11 @@ let getData = (function () {
 	});
 
 	let init = function () {
-		getBookList("", "");
+		getBookListFromAPI("", "");
 		initAutoComplete();
 	};
 
-	function getBookList(listDate, listName) {
+	function getBookListFromAPI(listDate, listName) {
 		let date = listDate != "" ? listDate : "2019-01-01";
 		let name = listName != "" ? listName : "hardcover-fiction";
 		let url =
@@ -94,20 +94,22 @@ let getData = (function () {
 	
 	function initAutoComplete() {
 		let listOjb = {}
-		lists.map(function (item) {
-			listOjb[item] = null;
-		});
+		lists.map(function (item) { listOjb[item] = null; });
 		$("input.autocomplete").autocomplete({
 			data: listOjb,
 			onAutocomplete: initDatePicker
 		});
 	}
 
-	function initDatePicker() {
+	function initDatePicker(val) {
+		console.log(val);
 		$(".datepicker").datepicker({
 			setDefaultDate: true,
 			autoClose: true,
-			format: 'yyyy mm dd'
+			format: 'yyyy mm dd',
+			onSelect: function(date){
+				getBookListFromAPI(date,);
+			}
 		});
 	}
 	return {
