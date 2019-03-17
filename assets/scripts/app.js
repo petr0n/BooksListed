@@ -1,4 +1,4 @@
-let getData = (function () {
+let bookApp = (function () {
 	let lists = [
 		"Combined Print and E-Book Fiction",
 		"Combined Print and E-Book Nonfiction",
@@ -59,6 +59,7 @@ let getData = (function () {
 
 	let init = function () {
 		initAutoComplete();
+		getBookDetails('Dune');
 	};
 
 	function initAutoComplete() {
@@ -113,28 +114,27 @@ let getData = (function () {
 	}
 
 	
-	const detailTemplate = `
-	<div class="card detail row">
-		<div class="card-image col s12 m3 l2 size">
-			<img
-				class="image"
-				src=""
-			/>
-		</div>
-		<div class="card-stacked col s12 m9 l10 ">
-			<div class="card-content book-info">
-				<p class="title"></p>
-				<p class="writer"></p>
-			</div>
-			<div class="card-action">
-				<p class="description"></p>
-			</div>
-		</div>
-	</div>
-	`;
-	
 	function createCard(book) {
-		const detail = $(detailTemplate);
+		const bookListTemplate = `
+		<div class="card detail row">
+			<div class="card-image col s12 m3 l2 size">
+				<img
+					class="image"
+					src=""
+				/>
+			</div>
+			<div class="card-stacked col s12 m9 l10 ">
+				<div class="card-content book-info">
+					<p class="title"></p>
+					<p class="writer"></p>
+				</div>
+				<div class="card-action">
+					<p class="description"></p>
+				</div>
+			</div>
+		</div>
+		`;	
+		const detail = $(bookListTemplate);
 		detail.find(".title").text(book.title);
 		detail.find(".writer").text(book.contributor);
 		detail.find(".description").text(book.description);
@@ -159,38 +159,59 @@ let getData = (function () {
 	};
 
 
+})();
+bookApp.init();
 
 
-
+let apiLibrary = (function () {
+	const mockApiUrl = 'http://peterskitchen.co/xml2JSON.php';
+	function getBookDetails(title){
+		let apiUrl = 'https://www.goodreads.com/search/index.xml?key=ceicGimSCSzGALUEWdy1Q&q=' + title;
+		let bookObj = {};
+		$.ajax({
+				url: mockApiUrl,
+				method: 'POST',
+				data: { 'url': apiUrl },
+				dataType: 'text'
+		}).then(function(response){
+			let bookJSON = JSON.parse(response);
+			console.log(bookJSON.search.results.work[0]);
+		});
+	}
 	
-
-function getBookDetails(title){
-	const apiUrl = 'https://www.goodreads.com/author/list.xml?key=ceicGimSCSzGALUEWdy1Q&id=721';
-	let t = title != '' ? title : 'Cujo';
-	let apiUrl = 'https://www.goodreads.com/search/index.xml?key=ceicGimSCSzGALUEWdy1Q&q=' + t;
-	$.ajax({
-			url: 'http://peterskitchen.co/xml2JSON.php',
+	function getBookReviews(title) {
+		let apiURL = 'https://www.goodreads.com/book/title.xml?key=ceicGimSCSzGALUEWdy1Q&title=' + title;
+		let bookReviewObj = {};
+		$.ajax({
+			url: mockApiUrl,
 			method: 'POST',
 			data: { 'url': apiUrl },
 			dataType: 'text'
-	}).then(function(response){
-			console.log(response);
-	});
-}
+		}).then(function(response){
+			reviewJSON = JSON.parse(response);
+			console.log(reviewJSON);
+		});
+	}
 
+	function getAuthorBooks(id){
+		let apiUrl = 'https://www.goodreads.com/author/list.xml?key=ceicGimSCSzGALUEWdy1Q&id=721';
+		let authorBookObj = {};
+		$.ajax({
+				url: mockApiUrl,
+				method: 'POST',
+				data: { 'url': apiUrl },
+				dataType: 'text'
+		}).then(function(response){
+			let booksJSON = response;
+			console.log(booksJSON);
+		});
+	}
 
-function getAuthorBooks(id){
-    let t = title != '' ? title : 720; // John Grisham
-    let authorBookObj = {};
-    $.ajax({
-        url: 'http://peterskitchen.co/xml2JSON.php',
-        method: 'POST',
-        data: { 'url': apiUrl },
-        dataType: 'text'
-    }).then(function(response){
-        console.log(response);
-    });
-}
+	return {
+		getBookDetails: getBookDetails,
+		getBookReviews: getBookReviews,
+		getAuthorBooks: getAuthorBooks
+	};
+
 
 })();
-getData.init();
