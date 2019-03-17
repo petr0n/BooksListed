@@ -116,23 +116,23 @@ let bookApp = (function () {
 	
 	function createCard(book) {
 		const bookListTemplate = `
-		<div class="card detail row">
-			<div class="card-image col s12 m3 l2 size">
-				<img
-					class="image"
-					src=""
-				/>
-			</div>
-			<div class="card-stacked col s12 m9 l10 ">
-				<div class="card-content book-info">
-					<p class="title"></p>
-					<p class="writer"></p>
-				</div>
-				<div class="card-action">
-					<p class="description"></p>
-				</div>
-			</div>
-		</div>
+    <div class="card detail row hoverable">
+      <div class="card-image col s12 m3 l2 size ">
+        <img
+          class="image"
+          src=""
+        />
+      </div>
+      <div class="card-stacked col s12 m9 l10 ">
+        <div class="card-content book-info">
+          <p class="title"></p>
+          <p class="writer"></p>
+        </div>
+        <div class="card-action">
+          <p class="description"></p>
+        </div>
+      </div>
+    </div>
 		`;	
 		const detail = $(bookListTemplate);
 		detail.find(".title").text(book.title);
