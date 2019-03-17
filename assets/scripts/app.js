@@ -124,8 +124,8 @@ let getData = (function () {
 getData.init();
 
 const detailTemplate = `
-<div class="card detail row">
-  <div class="card-image col s12 m3 l2 size">
+<div class="card detail row hoverable">
+  <div class="card-image col s12 m3 l2 size ">
     <img
       class="image"
       src=""
