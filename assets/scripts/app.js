@@ -57,9 +57,63 @@ let bookApp = (function () {
 		"Travel"
 	];
 
+	let apiLibrary = (function () {
+		const mockApiUrl = 'http://peterskitchen.co/xml2JSON.php';
+		function getBookDetails(title){
+			let apiUrl = 'https://www.goodreads.com/search/index.xml?key=ceicGimSCSzGALUEWdy1Q&q=' + title;
+			let bookObj = {};
+			$.ajax({
+					url: mockApiUrl,
+					method: 'POST',
+					data: { 'url': apiUrl },
+					dataType: 'text'
+			}).then(function(response){
+				let bookJSON = JSON.parse(response);
+				console.log(bookJSON.search.results.work[0]);
+			});
+	
+		}
+		
+		function getBookReviews(title) {
+			let apiURL = 'https://www.goodreads.com/book/title.xml?key=ceicGimSCSzGALUEWdy1Q&title=' + title;
+			let bookReviewObj = {};
+			$.ajax({
+				url: mockApiUrl,
+				method: 'POST',
+				data: { 'url': apiUrl },
+				dataType: 'text'
+			}).then(function(response){
+				reviewJSON = JSON.parse(response);
+				console.log(reviewJSON);
+			});
+		}
+	
+		function getAuthorBooks(id){
+			let apiUrl = 'https://www.goodreads.com/author/list.xml?key=ceicGimSCSzGALUEWdy1Q&id=721';
+			let authorBookObj = {};
+			$.ajax({
+					url: mockApiUrl,
+					method: 'POST',
+					data: { 'url': apiUrl },
+					dataType: 'text'
+			}).then(function(response){
+				let booksJSON = response;
+				console.log(booksJSON);
+			});
+		}
+	
+		return {
+			getBookDetails: getBookDetails,
+			getBookReviews: getBookReviews,
+			getAuthorBooks: getAuthorBooks
+		};
+	
+	
+	})();
+
 	let init = function () {
 		initAutoComplete();
-		getBookDetails('Dune');
+		apiLibrary.getBookDetails('Dune');
 	};
 
 	function initAutoComplete() {
@@ -145,13 +199,14 @@ let bookApp = (function () {
 
 		});
 		$(".book-list-wrapper").append(detail);
-		// // console.log(book);
-		// detail.on('click', function () {
-		// 	const publishDate = $("<p>").text(book.published_date);
-		// 	detail.find(".book-info").append(publishDate);
-		// 	// console.log("click")
+		// console.log(book);
+		detail.on('click', function () {
+			const publishDate = $("<p>").text(apiLibrary.getBookDetails.original_publication_day);
+			console.log(publishDate);
+			// detail.find(".book-info").append(publishDate);
+			// console.log("click")
 	
-		// });
+		});
 	}
 
 	return {
@@ -163,55 +218,3 @@ let bookApp = (function () {
 bookApp.init();
 
 
-let apiLibrary = (function () {
-	const mockApiUrl = 'http://peterskitchen.co/xml2JSON.php';
-	function getBookDetails(title){
-		let apiUrl = 'https://www.goodreads.com/search/index.xml?key=ceicGimSCSzGALUEWdy1Q&q=' + title;
-		let bookObj = {};
-		$.ajax({
-				url: mockApiUrl,
-				method: 'POST',
-				data: { 'url': apiUrl },
-				dataType: 'text'
-		}).then(function(response){
-			let bookJSON = JSON.parse(response);
-			console.log(bookJSON.search.results.work[0]);
-		});
-	}
-	
-	function getBookReviews(title) {
-		let apiURL = 'https://www.goodreads.com/book/title.xml?key=ceicGimSCSzGALUEWdy1Q&title=' + title;
-		let bookReviewObj = {};
-		$.ajax({
-			url: mockApiUrl,
-			method: 'POST',
-			data: { 'url': apiUrl },
-			dataType: 'text'
-		}).then(function(response){
-			reviewJSON = JSON.parse(response);
-			console.log(reviewJSON);
-		});
-	}
-
-	function getAuthorBooks(id){
-		let apiUrl = 'https://www.goodreads.com/author/list.xml?key=ceicGimSCSzGALUEWdy1Q&id=721';
-		let authorBookObj = {};
-		$.ajax({
-				url: mockApiUrl,
-				method: 'POST',
-				data: { 'url': apiUrl },
-				dataType: 'text'
-		}).then(function(response){
-			let booksJSON = response;
-			console.log(booksJSON);
-		});
-	}
-
-	return {
-		getBookDetails: getBookDetails,
-		getBookReviews: getBookReviews,
-		getAuthorBooks: getAuthorBooks
-	};
-
-
-})();
