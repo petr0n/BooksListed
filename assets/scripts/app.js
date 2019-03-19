@@ -1,79 +1,73 @@
 
-let apiLibrary = (function () {
-	const mockApiUrl = 'http://peterskitchen.co/xml2JSON.php';
-	
-	function getBookDetails(title){
-		let apiUrl = 'https://www.goodreads.com/search/index.xml?key=ceicGimSCSzGALUEWdy1Q&q=' + title;
-		// let bookObj = {};
-		$.ajax({
-			url: mockApiUrl,
-			method: 'POST',
-			data: { 'url': apiUrl },
-			dataType: 'text'
-		}).then(function(response){
-			let bookJSON = JSON.parse(response);
-			let thisBook = bookJSON.search.results.work[0];
-			console.log('authorId: ' + thisBook.best_book.author.id);
-			console.log('bookId: ' + thisBook.id);
-			// getAuthorBooks(thisBook.best_book.author.id);
-			getBookReviews(thisBook.id);
-		});
-	}
-	
-	function getBookReviews(bookId) {
-		let apiURL = 'https://www.goodreads.com/book/show.xml?key=ceicGimSCSzGALUEWdy1Q&title=' + bookId;
-		// let bookReviewObj = {};
-		$.ajax({
-			url: mockApiUrl,
-			method: 'POST',
-			data: { 'url': apiUrl },
-			dataType: 'text'
-		}).then(function(response){
-			reviewJSON = JSON.parse(response);
-			console.log('reviewJSON:');
-			console.log(reviewJSON.author.books.book);
-		});
-	}
-
-	function getAuthorBooks(authorId){
-		let apiUrl = 'https://www.goodreads.com/author/list.xml?key=ceicGimSCSzGALUEWdy1Q&id=' + authorId;
-		// let authorBookObj = {};
-		$.ajax({
-			url: mockApiUrl,
-			method: 'POST',
-			data: { 'url': apiUrl },
-			dataType: 'text'
-		}).then(function(response){
-			let booksJSON = JSON.parse(response);
-			let bookList = booksJSON.author.books.book;
-			console.log('booksJSON:');
-			console.log(bookList);
-		});
-	}
-
-	return {
-		getBookDetails: getBookDetails,
-		getBookReviews: getBookReviews,
-		getAuthorBooks: getAuthorBooks
-	};
-
-})();
-// apiLibrary();
 
 let bookApp = (function () {
-	// get list from json file
-	$.get('../assets/scripts/best-sellers-list.json', function(list){
-		let lists = list['data'];
-	});
+	const mockApiUrl = 'http://peterskitchen.co/xml2JSON.php';
 
+	let lists = [
+"Combined Print and E-Book Fiction",
+"Combined Print and E-Book Nonfiction",
+"Hardcover Fiction",
+"Hardcover Nonfiction",
+"Trade Fiction Paperback",
+"Mass Market Paperback",
+"Paperback Nonfiction",
+"E-Book Fiction",
+"E-Book Nonfiction",
+"Hardcover Advice",
+"Paperback Advice",
+"Advice How-To and Miscellaneous",
+"Chapter Books",
+"Childrens Middle Grade",
+"Childrens Middle Grade E-Book",
+"Childrens Middle Grade Hardcover",
+"Childrens Middle Grade Paperback",
+"Paperback Books",
+"Picture Books",
+"Series Books",
+"Young Adult",
+"Young Adult E-Book",
+"Young Adult Hardcover",
+"Young Adult Paperback",
+"Hardcover Graphic Books",
+"Paperback Graphic Books",
+"Manga",
+"Combined Print Fiction",
+"Combined Print Nonfiction",
+"Animals",
+"Audio Fiction",
+"Audio Nonfiction",
+"Business Books",
+"Celebrities",
+"Crime and Punishment",
+"Culture",
+"Education",
+"Espionage",
+"Expeditions Disasters and Adventures",
+"Fashion Manners and Customs",
+"Food and Fitness",
+"Games and Activities",
+"Hardcover Business Books",
+"Health",
+"Humor",
+"Indigenous Americans",
+"Relationships",
+"Paperback Business Books",
+"Family",
+"Hardcover Political Books",
+"Race and Civil Rights",
+"Religion Spirituality and Faith",
+"Science",
+"Sports",
+"Travel"
+	];
 	let init = function () {
 		initAutoComplete();
-		apiLibrary.getBookDetails('Dune');
+		// apiLibrary.getBookDetails('Dune');
 	};
-
 	function initAutoComplete() {
 		let listOjb = {}
 		lists.map(function (item) { listOjb[item] = null; });
+		console.log(listOjb);
 		$("input.autocomplete").autocomplete({
 			data: listOjb,
 			minLength: 0,
@@ -87,7 +81,7 @@ let bookApp = (function () {
 			// console.log(val);
 			$(".datepicker").datepicker({
 				setDefaultDate: true,
-				autoClose: true,
+				autoClose: false,
 				format: 'yyyy-mm-dd',
 				onSelect: function(date){
 					getBookListFromAPI(date,val);
@@ -163,11 +157,60 @@ let bookApp = (function () {
 		// });
 	}
 
+	function bookDetail(title){
+		let apiUrl = 'https://www.goodreads.com/search/index.xml?key=ceicGimSCSzGALUEWdy1Q&q=' + title;
+		// let bookObj = {};
+		$.ajax({
+			url: mockApiUrl,
+			method: 'POST',
+			data: { 'url': apiUrl },
+			dataType: 'text'
+		}).then(function(response){
+			let bookJSON = JSON.parse(response);
+			let thisBook = bookJSON.search.results.work[0];
+			console.log('authorId: ' + thisBook.best_book.author.id);
+			console.log('bookId: ' + thisBook.id);
+		});
+	}
+
+	function createReviews(title){
+		let apiUrl = 'https://www.goodreads.com/book/show.xml?key=ceicGimSCSzGALUEWdy1Q&title=' + title;
+		// let bookReviewObj = {};
+		$.ajax({
+			url: mockApiUrl,
+			method: 'POST',
+			data: { 'url': apiUrl },
+			dataType: 'text'
+		}).then(function(response){
+			reviewJSON = JSON.parse(response);
+			console.log('reviewJSON:');
+			console.log(reviewJSON.author.books.book);
+		});
+	}
+	
+	function createCarousel(authorId){
+		let apiUrl = 'https://www.goodreads.com/author/list.xml?key=ceicGimSCSzGALUEWdy1Q&id=' + authorId;
+		$.ajax({
+			url: mockApiUrl,
+			method: 'POST',
+			data: { 'url': apiUrl },
+			dataType: 'text'
+		}).done(function(response){
+			let booksJSON = JSON.parse(response);
+			let bookList = booksJSON.author.books.book;
+			console.log('booksJSON:');
+			console.log(bookList);
+		});
+	}
+
+
+
+
 	return {
 		init: init
 	};
 
 
-})();
+}());
 bookApp.init();
 
