@@ -1,29 +1,73 @@
 
 
 let bookApp = (function () {
-	// get list from json file
 	const mockApiUrl = 'http://peterskitchen.co/xml2JSON.php';
-	
 
-	// console.log(apiLibrary.getAuthorBooks(72));
-	let lists = [];
-	function getListNames(){
-		$.get('../assets/scripts/best-sellers-list.json')
-			.done(function(list){
-				lists = list['data'];
-			});
-	}
-		console.log(lists);
-	
+	let lists = [
+"Combined Print and E-Book Fiction",
+"Combined Print and E-Book Nonfiction",
+"Hardcover Fiction",
+"Hardcover Nonfiction",
+"Trade Fiction Paperback",
+"Mass Market Paperback",
+"Paperback Nonfiction",
+"E-Book Fiction",
+"E-Book Nonfiction",
+"Hardcover Advice",
+"Paperback Advice",
+"Advice How-To and Miscellaneous",
+"Chapter Books",
+"Childrens Middle Grade",
+"Childrens Middle Grade E-Book",
+"Childrens Middle Grade Hardcover",
+"Childrens Middle Grade Paperback",
+"Paperback Books",
+"Picture Books",
+"Series Books",
+"Young Adult",
+"Young Adult E-Book",
+"Young Adult Hardcover",
+"Young Adult Paperback",
+"Hardcover Graphic Books",
+"Paperback Graphic Books",
+"Manga",
+"Combined Print Fiction",
+"Combined Print Nonfiction",
+"Animals",
+"Audio Fiction",
+"Audio Nonfiction",
+"Business Books",
+"Celebrities",
+"Crime and Punishment",
+"Culture",
+"Education",
+"Espionage",
+"Expeditions Disasters and Adventures",
+"Fashion Manners and Customs",
+"Food and Fitness",
+"Games and Activities",
+"Hardcover Business Books",
+"Health",
+"Humor",
+"Indigenous Americans",
+"Relationships",
+"Paperback Business Books",
+"Family",
+"Hardcover Political Books",
+"Race and Civil Rights",
+"Religion Spirituality and Faith",
+"Science",
+"Sports",
+"Travel"
+	];
 	let init = function () {
-		getListNames();
 		initAutoComplete();
 		// apiLibrary.getBookDetails('Dune');
 	};
-	
 	function initAutoComplete() {
 		let listOjb = {}
 		lists.map(function (item) { listOjb[item] = null; });
+		console.log(listOjb);
 		$("input.autocomplete").autocomplete({
 			data: listOjb,
 			minLength: 0,
@@ -167,6 +211,6 @@ let bookApp = (function () {
 	};
 
 
-})();
+}());
 bookApp.init();
 
