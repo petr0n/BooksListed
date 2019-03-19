@@ -94,8 +94,7 @@ let bookApp = (function () {
 		const nyt_key = "api-key=jGJGGPp2j3xzgOmII98GpJxgukWxBnS3";
 		let date = listDate != "" ? listDate : "2019-01-01";
 		let name = listName != "" ? listName : "hardcover-fiction";
-		let url =
-			nyt_endpoint + "lists/" + listDate + "/" + name + ".json?" + nyt_key;
+		let url = nyt_endpoint + "lists/" + listDate + "/" + name + ".json?" + nyt_key;
 		$.ajax({
 			url: url
 		}).then(function (res) {
@@ -117,25 +116,26 @@ let bookApp = (function () {
 
 	
 	function createCard(book) {
-		const bookListTemplate = `
-    <div class="card detail row hoverable">
-      <div class="card-image col s12 m3 l2 size ">
-        <img
-          class="image"
-          src=""
-        />
-      </div>
-      <div class="card-stacked col s12 m9 l10 ">
-        <div class="card-content book-info">
-          <p class="title"></p>
-          <p class="writer"></p>
-        </div>
-        <div class="card-action">
-          <p class="description"></p>
-        </div>
-      </div>
-    </div>
-		`;	
+		const bookListWrapperEl = $(".book-list-wrapper");
+		const bookListTemplate = `<div class="card detail row hoverable">
+		<div class="card-image col s12 m3 l2 size ">
+		<img
+			class="image"
+			src=""
+		/>
+		</div>
+		<div class="card-stacked col s12 m9 l10 ">
+		<div class="card-content book-info">
+			<p class="title"></p>
+			<p class="writer"></p>
+		</div>
+		<div class="card-action">
+			<p class="description"></p>
+		</div>
+		</div>
+		</div>`;
+		//before filling the list empty it
+		bookListWrapperEl.empty();
 		const detail = $(bookListTemplate);
 		detail.find('.card.detail').attr('data-bookTitle', book.title);
 		detail.find(".title").text(book.title);
@@ -148,15 +148,8 @@ let bookApp = (function () {
 			e.preventDefault();
 			// createBookDetailCard(book.title);
 			switchToDetail(book.title);
-
 		});
-		$(".book-list-wrapper").append(detail);
-		// detail.on('click', function () {
-		// 	const publishDate = $("<p>").text(book.published_date);
-		// 	detail.find(".book-info").append(publishDate);
-		// 	// console.log("click")
-	
-		// });
+		bookListWrapperEl.append(detail);
 	}
 
 	function switchToDetail(title){
@@ -170,7 +163,6 @@ let bookApp = (function () {
 
 	function getBookDetail(title){
 		let apiUrl = 'https://www.goodreads.com/search/index.xml?key=ceicGimSCSzGALUEWdy1Q&q=' + title;
-		// let bookObj = {};
 		$.ajax({
 			url: mockApiUrl,
 			method: 'POST',
@@ -179,7 +171,7 @@ let bookApp = (function () {
 		}).then(function(response){
 			let bookJSON = JSON.parse(response);
 			let thisBook = bookJSON.search.results.work[0];
-			// console.log(thisBook);
+			console.log(thisBook);
 			console.log('authorId: ' + thisBook.best_book.author.id);
 			console.log('bookId: ' + thisBook.best_book.id);
 			getAuthorBooks(thisBook.best_book.author.id);
@@ -198,8 +190,8 @@ let bookApp = (function () {
 			dataType: 'text'
 		}).then(function(response){
 			reviewJSON = JSON.parse(response);
-			console.log('reviewJSON:');
-			console.log(reviewJSON);
+			// console.log('reviewJSON:');
+			// console.log(reviewJSON);
 			// 
 			// let description = book.description;
 			// let img = book.image_url;
@@ -208,6 +200,7 @@ let bookApp = (function () {
 
 
 	function getAuthorBooks(authorId) {
+		let carouselEl = $('.carousel');
 		let apiUrl = 'https://www.goodreads.com/author/list.xml?key=ceicGimSCSzGALUEWdy1Q&id=' + authorId;
 		$.ajax({
 			url: mockApiUrl,
@@ -218,8 +211,9 @@ let bookApp = (function () {
 			let booksJSON = JSON.parse(response);
 			let bookList = booksJSON.author.books.book;
 			// console.log('booksJSON:');
-			// console.log(bookList[4]);
+			carouselEl.empty();
             for (var i = 0; i < 20; i++) {
+				console.log(bookList[i]);
 				let imgUrl = bookList[i].image_url;
 				if (!imgUrl.includes('nophoto')) {
 					var bookLink = $("<a>");
@@ -231,8 +225,8 @@ let bookApp = (function () {
 					bookLink.append(coverImg);
 					$("#suggest").append(bookLink);
 				}
-            }
-			$('.carousel').carousel({
+			}
+			carouselEl.carousel({
 				numVisible: 7,
 				duration: 500,
 				indicators: true
@@ -243,7 +237,7 @@ let bookApp = (function () {
 	
 	$('.backToList').on('click', goBackToList);
 	$('.backToStart').on('click', goBackToStart);
-	
+
 	function goBackToList(){
 		$('.book-detail').slideUp(200, function(){
 			$('.book-list').slideDown(200, function(){
@@ -254,7 +248,6 @@ let bookApp = (function () {
 	function goBackToStart(){
 		$('.book-list').slideUp(200, function(){
 			console.log('goBackToStart');
-
 		});
 	}
 
