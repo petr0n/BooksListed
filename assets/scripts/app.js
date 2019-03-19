@@ -58,16 +58,15 @@ let bookApp = (function () {
 "Religion Spirituality and Faith",
 "Science",
 "Sports",
-"Travel"
-	];
+"Travel"];
 	let init = function () {
 		initAutoComplete();
 		// apiLibrary.getBookDetails('Dune');
+		getBookReviews(888628);
 	};
 	function initAutoComplete() {
 		let listOjb = {}
 		lists.map(function (item) { listOjb[item] = null; });
-		console.log(listOjb);
 		$("input.autocomplete").autocomplete({
 			data: listOjb,
 			minLength: 0,
@@ -81,7 +80,7 @@ let bookApp = (function () {
 			// console.log(val);
 			$(".datepicker").datepicker({
 				setDefaultDate: true,
-				autoClose: false,
+				autoClose: true,
 				format: 'yyyy-mm-dd',
 				onSelect: function(date){
 					getBookListFromAPI(date,val);
@@ -102,7 +101,7 @@ let bookApp = (function () {
 		}).then(function (res) {
 			// let listTitle = res.results.list_name;
 			let books = res.results.books;
-			console.log(books);
+			// console.log(res.results);
 			if (books) {
 				$('section .search-wrapper').addClass('list-selected');
 				$('.mainlogo').addClass('small'); 
@@ -138,17 +137,20 @@ let bookApp = (function () {
     </div>
 		`;	
 		const detail = $(bookListTemplate);
+		detail.find('.card.detail').attr('data-bookTitle', book.title);
 		detail.find(".title").text(book.title);
 		detail.find(".writer").text(book.contributor);
 		detail.find(".description").text(book.description);
 		detail.find(".image").attr("src", book.book_image);
 		
+		// console.log(book);
 		detail.on('click', function(e) {
 			e.preventDefault();
+			// createBookDetailCard(book.title);
+			switchToDetail();
 
 		});
 		$(".book-list-wrapper").append(detail);
-		// // console.log(book);
 		// detail.on('click', function () {
 		// 	const publishDate = $("<p>").text(book.published_date);
 		// 	detail.find(".book-info").append(publishDate);
@@ -157,7 +159,15 @@ let bookApp = (function () {
 		// });
 	}
 
-	function bookDetail(title){
+	function switchToDetail(){
+		$('.book-list').slideUp(200, function(){
+			$('.book-detail').slideDown(200, function(){
+				getAuthorBooks(9226);
+			});
+		});
+	}
+
+	function getBookDetail(title){
 		let apiUrl = 'https://www.goodreads.com/search/index.xml?key=ceicGimSCSzGALUEWdy1Q&q=' + title;
 		// let bookObj = {};
 		$.ajax({
@@ -168,13 +178,15 @@ let bookApp = (function () {
 		}).then(function(response){
 			let bookJSON = JSON.parse(response);
 			let thisBook = bookJSON.search.results.work[0];
+			console.log(thisBook);
 			console.log('authorId: ' + thisBook.best_book.author.id);
-			console.log('bookId: ' + thisBook.id);
+			console.log('bookId: ' + thisBook.best_book.id);
+
 		});
 	}
 
-	function createReviews(title){
-		let apiUrl = 'https://www.goodreads.com/book/show.xml?key=ceicGimSCSzGALUEWdy1Q&title=' + title;
+	function getBookReviews(bookId){
+		let apiUrl = 'https://www.goodreads.com/book/show/' + bookId + '.xml?key=ceicGimSCSzGALUEWdy1Q&text_only=true';
 		// let bookReviewObj = {};
 		$.ajax({
 			url: mockApiUrl,
@@ -184,7 +196,9 @@ let bookApp = (function () {
 		}).then(function(response){
 			reviewJSON = JSON.parse(response);
 			console.log('reviewJSON:');
-			console.log(reviewJSON.author.books.book);
+			console.log(reviewJSON);
+			let description = book.description;
+			let img = book.image_url;
 		});
 	}
 	
@@ -198,10 +212,46 @@ let bookApp = (function () {
 		}).done(function(response){
 			let booksJSON = JSON.parse(response);
 			let bookList = booksJSON.author.books.book;
-			console.log('booksJSON:');
-			console.log(bookList);
+			// console.log('booksJSON:');
+			// console.log(bookList);
 		});
 	}
+
+
+	function getAuthorBooks(authorId) {
+		let apiUrl = 'https://www.goodreads.com/author/list.xml?key=ceicGimSCSzGALUEWdy1Q&id=' + authorId;
+		$.ajax({
+			url: mockApiUrl,
+			method: 'POST',
+			data: { 'url': apiUrl },
+			dataType: 'text'
+		}).done(function(response){
+			let booksJSON = JSON.parse(response);
+			let bookList = booksJSON.author.books.book;
+			// console.log('booksJSON:');
+			// console.log(bookList[4]);
+            for (var i = 0; i < 20; i++) {
+				let imgUrl = bookList[i].image_url;
+				if (!imgUrl.includes('nophoto')) {
+					var bookLink = $("<a>");
+					bookLink.attr('href', bookList[i].link);
+					bookLink.addClass("carousel-item");
+					//sugBook.addClass("waves-effect waves-light btn");
+					let coverImg = $("<img>");
+					coverImg.attr("src", bookList[i].image_url);
+					bookLink.append(coverImg);
+					$("#suggest").append(bookLink);
+				}
+            }
+			$('.carousel').carousel({
+				numVisible: 7,
+				duration: 500,
+				indicators: true
+			});
+
+		});
+	}
+	
 
 
 

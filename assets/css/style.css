@@ -78,13 +78,21 @@ section.search .search-wrapper .input-field>label {
 .datepicker-wrapper {
   display: none;
 }
-
+/** override materialize colors **/
+.datepicker-date-display, button:focus {
+  background-color: var(--main-blue);
+}
+.datepicker-cancel, .datepicker-clear, .datepicker-today, .datepicker-done, .datepicker-table td.is-today {
+  color: var(--main-blue);
+}
 section.book-list {
   display: none;
 }
 
 section.book-detail {
-  display: none;
+ 
+  width: 100%;
+  height: auto;
 }
 
 /* page 1 styles */
