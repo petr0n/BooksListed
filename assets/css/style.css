@@ -90,7 +90,7 @@ section.book-list {
 }
 
 section.book-detail {
- 
+  display: none;
   width: 100%;
   height: auto;
 }

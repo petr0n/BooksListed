@@ -62,7 +62,7 @@ let bookApp = (function () {
 	let init = function () {
 		initAutoComplete();
 		// apiLibrary.getBookDetails('Dune');
-		getBookReviews(888628);
+		// getBookReviews(888628);
 	};
 	function initAutoComplete() {
 		let listOjb = {}
@@ -147,7 +147,7 @@ let bookApp = (function () {
 		detail.on('click', function(e) {
 			e.preventDefault();
 			// createBookDetailCard(book.title);
-			switchToDetail();
+			switchToDetail(book.title);
 
 		});
 		$(".book-list-wrapper").append(detail);
@@ -159,10 +159,11 @@ let bookApp = (function () {
 		// });
 	}
 
-	function switchToDetail(){
+	function switchToDetail(title){
 		$('.book-list').slideUp(200, function(){
 			$('.book-detail').slideDown(200, function(){
-				getAuthorBooks(9226);
+				console.log('switchToDetail');
+				getBookDetail(title);
 			});
 		});
 	}
@@ -178,9 +179,11 @@ let bookApp = (function () {
 		}).then(function(response){
 			let bookJSON = JSON.parse(response);
 			let thisBook = bookJSON.search.results.work[0];
-			console.log(thisBook);
+			// console.log(thisBook);
 			console.log('authorId: ' + thisBook.best_book.author.id);
 			console.log('bookId: ' + thisBook.best_book.id);
+			getAuthorBooks(thisBook.best_book.author.id);
+			getBookReviews(thisBook.best_book.id);
 
 		});
 	}
@@ -197,23 +200,9 @@ let bookApp = (function () {
 			reviewJSON = JSON.parse(response);
 			console.log('reviewJSON:');
 			console.log(reviewJSON);
-			let description = book.description;
-			let img = book.image_url;
-		});
-	}
-	
-	function createCarousel(authorId){
-		let apiUrl = 'https://www.goodreads.com/author/list.xml?key=ceicGimSCSzGALUEWdy1Q&id=' + authorId;
-		$.ajax({
-			url: mockApiUrl,
-			method: 'POST',
-			data: { 'url': apiUrl },
-			dataType: 'text'
-		}).done(function(response){
-			let booksJSON = JSON.parse(response);
-			let bookList = booksJSON.author.books.book;
-			// console.log('booksJSON:');
-			// console.log(bookList);
+			// 
+			// let description = book.description;
+			// let img = book.image_url;
 		});
 	}
 
@@ -252,7 +241,22 @@ let bookApp = (function () {
 		});
 	}
 	
+	$('.backToList').on('click', goBackToList);
+	$('.backToStart').on('click', goBackToStart);
+	
+	function goBackToList(){
+		$('.book-detail').slideUp(200, function(){
+			$('.book-list').slideDown(200, function(){
+				console.log('goBackToList');
+			});
+		})
+	}
+	function goBackToStart(){
+		$('.book-list').slideUp(200, function(){
+			console.log('goBackToStart');
 
+		});
+	}
 
 
 
