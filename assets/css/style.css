@@ -27,6 +27,10 @@ h5 {
 section {
   margin-bottom: 40px;
 }
+
+.search-container {
+  width: 300px;
+}
 .mainlogo {
   background-image: url("../../assets/images/logo.png");
   background-position: center;
@@ -34,6 +38,12 @@ section {
   background-repeat: no-repeat;
   height: 134px;
   width: 300px;
+}
+
+.mainlogo.small {
+  height: 84px;
+  margin: 0 auto;
+  width: 190px;
 }
 
 section.search .search-wrapper {
@@ -57,6 +67,9 @@ section.search .search-wrapper.list-selected {
 .search-wrapper input[type="text"].autocomplete:focus {
   border-bottom: 1px solid var(--main-red);
 }
+section.search .search-wrapper .input-field>label {
+  padding-left: 10px;
+}
 .search-wrapper .dropdown-content li > a,
 .search-wrapper .dropdown-content li > span {
   color: var(--main-blue);
@@ -65,13 +78,21 @@ section.search .search-wrapper.list-selected {
 .datepicker-wrapper {
   display: none;
 }
-
+/** override materialize colors **/
+.datepicker-date-display, button:focus {
+  background-color: var(--main-blue);
+}
+.datepicker-cancel, .datepicker-clear, .datepicker-today, .datepicker-done, .datepicker-table td.is-today {
+  color: var(--main-blue);
+}
 section.book-list {
   display: none;
 }
 
 section.book-detail {
   display: none;
+  width: 100%;
+  height: auto;
 }
 
 /* page 1 styles */
@@ -223,7 +244,7 @@ section.book-detail {
   cursor: pointer;
 }
 .copy {
-  background-color: rgb(0, 76, 153);
+  background-color: rgb(77, 117, 156);
   margin: auto;
   line-height: 50px;
   text-align: center;
@@ -237,4 +258,41 @@ body {
 
 main {
   flex: 1 0 auto;
+}
+
+.book-title{
+  font-weight: bolder;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 25px;
+}
+.book-writer{
+ font-style: italic;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 20px;
+
+}
+
+.publish-date{
+  font-style: italic;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 15px; 
+}
+.book-summary{
+  font-style: inherit;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 15px; 
+}
+h5{
+  margin: 5px;
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.authorImg .bio {
+  margin-top: 10px;
+  margin-right:5px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+
+}
+.buttons{
+  margin: auto;
 }

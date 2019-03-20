@@ -23,32 +23,34 @@
   </head>
 
   <body>
-    <!-- search -->
-    <header>
-		
-	</header>
+    <div class="buttons">
+      <button class="backToList waves-effect waves-light btn navyblue">Back to list</button>
+      <button class="backToStart waves-effect waves-light btn navyblue">Back to Start</button>
+    </div>
     <main>
+      <!-- search -->
       <section class="search">
         <div class="search-wrapper">
           <div class="search-container">
             <div class="row">
               <div class="col s12">
                 <div class="mainlogo"></div>
+                <p>Search NYTimes Best Sellers Lists</p>
               </div>
             </div>
             <div class="row">
               <div class="col s12">
                 <div class="input-field">
-                  <!-- <i class="material-icons prefix">library_books</i> -->
                   <input
                     type="text"
                     id="autocomplete-input"
                     class="autocomplete"
                   />
-                  <label for="autocomplete-input">Pick a Category</label>
+                  <label for="autocomplete-input">Pick a List</label>
                 </div>
                 <div class="input-field datepicker-wrapper">
-                  <input type="text" class="datepicker" />
+                  <input type="text" id="datepicker-input" class="datepicker" />
+                  <label for="datepicker-input">Pick a Date</label>
                 </div>
               </div>
             </div>
@@ -64,9 +66,71 @@
       </section>
 
       <!-- Display a book -->
-      <section class="book-detail">
-        <!-- Carousel-->
-        <div class="carousel" id="suggest"></div>
+      <section class="col s12 m7 book-detail">
+        <div class="container">
+          <div class="card">
+            <div class="row informations">
+              <div class="card-image col s12 m5 l4">
+                <img class="book-image" />
+              </div>
+              <div class="card-stacked col s12 m7 l8 ">
+                <div class="card-content title-author">
+                  <p class="book-title">Title</p>
+                  <br />
+                  <p class="book-writer">Writer</p>
+                  <br />
+                  <p class="publish-date">Publish Date</p>
+                </div>
+                <div class="card-action">
+                  <div class="book-summary">
+                    <h6>Summary</h6>
+                    <p>
+                      It is a long established fact that a reader will be
+                      distracted by the readable content of a page when looking
+                      at its layout. The point of using Lorem Ipsum is that it
+                      has a more-or-less normal distribution of letters, as
+                      opposed to using 'Content here, content here', making it
+                      look like readable English. Many desktop publishing
+                      packages and web page editors now use Lorem Ipsum as their
+                      default model text, and a search for 'lorem ipsum' will
+                      uncover many web sites still in their infancy. Various
+                      versions have evolved over the years, sometimes by
+                      accident, sometimes on purpose (injected humour and the
+                      like).
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col s12">
+                <hr />
+                <div class="row author-info">
+					<div class="col s12 m12 l12">
+							<h5>About Writer</h5>
+					</div>
+                  
+                  <div class="col s12 m4 l3 authorImage">
+						
+                    <img class="authorImg">
+                  </div>
+                  <div class="col s12 m8 l9 bio">
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col m12">
+				  <h6 class="center">More by the Author</h6>
+                <!-- Carousel-->
+                <div class="carousel" id="suggest"></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
 
@@ -85,6 +149,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <script src="assets/scripts/app.js"></script>
-    <script src="assets/scripts/goodread-api.js"></script>
   </body>
 </html>
