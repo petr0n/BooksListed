@@ -98,13 +98,13 @@ let bookApp = (function () {
 		$.ajax({
 			url: url
 		}).then(function (res) {
-			// let listTitle = res.results.list_name;
 			let books = res.results.books;
-			// console.log(res.results);
+			// console.log(books);
 			if (books) {
 				$('section .search-wrapper').addClass('list-selected');
 				$('.mainlogo').addClass('small'); 
 				$('section.book-list').slideDown(300, function(){
+					$(".book-list-wrapper").empty(); //before filling - empty it
 					books.map(function (book) {
 						// console.log(book.title);
 						createCard(book);
@@ -133,11 +133,9 @@ let bookApp = (function () {
 			<p class="description"></p>
 		</div>
 		</div>
-		</div>`;
-		//before filling the list empty it
-		bookListWrapperEl.empty();
+		</div>`;	
 		const detail = $(bookListTemplate);
-		detail.find('.card.detail').attr('data-bookTitle', book.title);
+		// detail.attr('data-bookTitle', book.title);
 		detail.find(".title").text(book.title);
 		detail.find(".writer").text(book.contributor);
 		detail.find(".description").text(book.description);
@@ -155,14 +153,14 @@ let bookApp = (function () {
 	function switchToDetail(title){
 		$('.book-list').slideUp(200, function(){
 			$('.book-detail').slideDown(200, function(){
-				console.log('switchToDetail');
+				console.log('switchToDetail: ' + title);
 				getBookDetail(title);
 			});
 		});
 	}
 
 	function getBookDetail(title){
-		let apiUrl = 'https://www.goodreads.com/search/index.xml?key=ceicGimSCSzGALUEWdy1Q&q=' + title;
+		let apiUrl = 'https://www.goodreads.com/search/index.xml?key=ceicGimSCSzGALUEWdy1Q&q=' + encodeURI(title);
 		$.ajax({
 			url: mockApiUrl,
 			method: 'POST',
@@ -190,7 +188,7 @@ let bookApp = (function () {
 			dataType: 'text'
 		}).then(function(response){
 			reviewJSON = JSON.parse(response);
-			// console.log('reviewJSON:');
+			// console.log('getBookReviews:');
 			// console.log(reviewJSON);
 			// 
 			// let description = book.description;
@@ -210,27 +208,37 @@ let bookApp = (function () {
 		}).done(function(response){
 			let booksJSON = JSON.parse(response);
 			let bookList = booksJSON.author.books.book;
-			// console.log('booksJSON:');
+			console.log('getAuthorBooks:');
+			console.log(booksJSON);
 			carouselEl.empty();
-            for (var i = 0; i < 20; i++) {
-				console.log(bookList[i]);
-				let imgUrl = bookList[i].image_url;
-				if (!imgUrl.includes('nophoto')) {
+			let listLen = 20;
+			if (bookList.length != undefined) {
+				if (bookList.length < 20) {
+					listLen = bookList.length;
+				}
+				console.log(bookList.length);
+				for (var i = 0; i < listLen; i++) {
+					let imgUrl = bookList[i].image_url;
 					var bookLink = $("<a>");
 					bookLink.attr('href', bookList[i].link);
 					bookLink.addClass("carousel-item");
-					//sugBook.addClass("waves-effect waves-light btn");
-					let coverImg = $("<img>");
-					coverImg.attr("src", bookList[i].image_url);
-					bookLink.append(coverImg);
-					$("#suggest").append(bookLink);
+					if (!imgUrl.includes('nophoto')) {
+						let coverImg = $("<img>");
+						coverImg.attr("src", imgUrl);
+						bookLink.append(coverImg);
+					} else {
+						bookLink.text(bookList[i].title)
+					}
+					carouselEl.append(bookLink);
 				}
+				carouselEl.carousel({
+					numVisible: 7,
+					duration: 500,
+					indicators: true
+				});
+			} else {
+				carouselEl.html('<p>Must be a new author, can\'t find any other books by this author');
 			}
-			carouselEl.carousel({
-				numVisible: 7,
-				duration: 500,
-				indicators: true
-			});
 
 		});
 	}
