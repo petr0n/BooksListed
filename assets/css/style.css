@@ -175,6 +175,10 @@ section.book-detail {
 
 footer {
   background-color: rgb(77, 117, 156);
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  width: 100%;
 }
 footer .copy {
   color: white;

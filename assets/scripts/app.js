@@ -63,6 +63,7 @@ let bookApp = (function () {
 	lists.sort();
 	let init = function () {
 		initAutoComplete();
+		$('.fixed-action-btn').floatingActionButton();
 	};
 	function initAutoComplete() {
 		let listOjb = {}
@@ -191,6 +192,7 @@ let bookApp = (function () {
 	}
 
 	function getBookDetail(isbn){
+		showButton();
 		let apiUrl = 'https://www.goodreads.com/book/isbn/' + isbn + '?key=ceicGimSCSzGALUEWdy1Q';
 		//let apiUrl = 'https://www.goodreads.com/search/index.xml?key=ceicGimSCSzGALUEWdy1Q&q=' + encodeURI(title);
 		$.ajax({
@@ -318,17 +320,12 @@ let bookApp = (function () {
 	function goBackToStart(){
 		$('.book-list').slideUp(200, function(){
 			console.log('goBackToStart');
+			$('.search-wrapper').removeClass('list-selected');
 		});
-		$(".book-list-wrapper").append(detail);
-		// // console.log(book);
-		// detail.on('click', function () {
-		// 	const publishDate = $("<p>").text(book.published_date);
-		// 	detail.find(".book-info").append(publishDate);
-		// 	// console.log("click")
-	
-		// });
 	}
-
+	function showButton() {
+		$('.fixed-action-btn').toggle();
+	}
 
 
 	return {
