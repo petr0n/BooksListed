@@ -209,6 +209,15 @@ let bookApp = (function () {
 			console.log('getAuthorInfo:');
 			console.log('about: ' + authorJSON.author.about);
 			console.log('image: ' + authorJSON.author.image_url);
+			$('.book-detail .bio').html(authorJSON.author.about);
+			if(authorJSON.author.image_url){ 
+				let authorImg = authorJSON.author.image_url;
+				let authorImgEl = $('<img>');
+				authorImgEl.attr('src', authorImg);
+				authorImgEl.css('float', 'left');
+				$('.author-info').prepend(authorImgEl);
+
+			}
 			// 
 			// let description = book.description;
 			// let img = book.image_url;
