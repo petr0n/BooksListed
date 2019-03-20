@@ -282,3 +282,17 @@ main {
   font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 15px; 
 }
+h5{
+  margin: 5px;
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.authorImg .bio {
+  margin-top: 10px;
+  margin-right:5px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+
+}
+.buttons{
+  margin: auto;
+}

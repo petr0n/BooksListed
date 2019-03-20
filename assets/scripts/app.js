@@ -222,11 +222,7 @@ let bookApp = (function () {
 			$('.book-detail .bio').html(authorJSON.author.about);
 			if(authorJSON.author.image_url){ 
 				let authorImg = authorJSON.author.image_url;
-				let authorImgEl = $('<img>');
-				authorImgEl.attr('id', "authorImg");
-				authorImgEl.attr('src', authorImg);
-				authorImgEl.css('float', 'left');
-				$('#authorImg').remove();
+				$(".authorImg").attr('src', authorImg);
 				$('.author-info').prepend(authorImgEl);
 
 			}
