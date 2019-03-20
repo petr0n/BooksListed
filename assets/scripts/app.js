@@ -169,12 +169,12 @@ let bookApp = (function () {
 		}).then(function(response){
 			let bookJSON = JSON.parse(response);
 			let thisBook = bookJSON.search.results.work[0];
-			console.log(thisBook);
+			// console.log(thisBook);
 			console.log('authorId: ' + thisBook.best_book.author.id);
 			console.log('bookId: ' + thisBook.best_book.id);
 			getAuthorBooks(thisBook.best_book.author.id);
+			getAuthorInfo(thisBook.best_book.author.id);
 			getBookReviews(thisBook.best_book.id);
-
 		});
 	}
 
@@ -188,8 +188,27 @@ let bookApp = (function () {
 			dataType: 'text'
 		}).then(function(response){
 			reviewJSON = JSON.parse(response);
-			// console.log('getBookReviews:');
-			// console.log(reviewJSON);
+			console.log('getBookReviews:');
+			console.log(reviewJSON);
+			// 
+			// let description = book.description;
+			// let img = book.image_url;
+		});
+	}
+
+	function getAuthorInfo(authorId){
+		let apiUrl = 'https://www.goodreads.com/author/show/' + authorId + '?format=xml&key=ceicGimSCSzGALUEWdy1Q';
+		// let bookReviewObj = {};
+		$.ajax({
+			url: mockApiUrl,
+			method: 'POST',
+			data: { 'url': apiUrl },
+			dataType: 'text'
+		}).then(function(response){
+			authorJSON = JSON.parse(response);
+			console.log('getAuthorInfo:');
+			console.log('about: ' + authorJSON.author.about);
+			console.log('image: ' + authorJSON.author.image_url);
 			// 
 			// let description = book.description;
 			// let img = book.image_url;
@@ -208,15 +227,14 @@ let bookApp = (function () {
 		}).done(function(response){
 			let booksJSON = JSON.parse(response);
 			let bookList = booksJSON.author.books.book;
-			console.log('getAuthorBooks:');
-			console.log(booksJSON);
+			// console.log('getAuthorBooks:');
+			// console.log(booksJSON);
 			carouselEl.empty();
 			let listLen = 20;
 			if (bookList.length != undefined) {
 				if (bookList.length < 20) {
 					listLen = bookList.length;
 				}
-				console.log(bookList.length);
 				for (var i = 0; i < listLen; i++) {
 					let imgUrl = bookList[i].image_url;
 					var bookLink = $("<a>");
