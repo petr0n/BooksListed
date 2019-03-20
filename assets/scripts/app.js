@@ -169,7 +169,7 @@ let bookApp = (function () {
 		}).then(function(response){
 			let bookJSON = JSON.parse(response);
 			let thisBook = bookJSON.search.results.work[0];
-			// console.log(thisBook);
+			console.log(thisBook);
 			console.log('authorId: ' + thisBook.best_book.author.id);
 			console.log('bookId: ' + thisBook.best_book.id);
 			getAuthorBooks(thisBook.best_book.author.id);
@@ -247,8 +247,7 @@ let bookApp = (function () {
 				for (var i = 0; i < listLen; i++) {
 					let imgUrl = bookList[i].image_url;
 					var bookLink = $("<a>");
-					bookLink.attr('href', bookList[i].link);
-					bookLink.addClass("carousel-item");
+					bookLink.attr('href', bookList[i].link).attr("target", "_blank").addClass("carousel-item");
 					if (!imgUrl.includes('nophoto')) {
 						let coverImg = $("<img>");
 						coverImg.attr("src", imgUrl);
