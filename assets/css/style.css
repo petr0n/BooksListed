@@ -7,6 +7,8 @@
   --main-gray: rgba(184, 184, 184, 1);
   --main-gray-dk: rgba(41, 41, 41, 1);
 }
+
+
 /* html elements */
 body {
   font-family: "Thasadith", sans-serif;
@@ -28,6 +30,8 @@ section {
   margin-bottom: 40px;
 }
 
+
+/* search section */
 .search-container {
   width: 300px;
 }
@@ -36,8 +40,8 @@ section {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 134px;
-  width: 300px;
+  height: 125px;
+  width: 280px;
 }
 
 .mainlogo.small {
@@ -50,9 +54,12 @@ section.search .search-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 90vh;
   width: 100vw;
   transition: all 0.3s ease-in;
+}
+section.search .search-wrapper p {
+  text-align: center;
 }
 section.search .search-wrapper.list-selected {
   height: 280px;
@@ -85,15 +92,100 @@ section.search .search-wrapper .input-field>label {
 .datepicker-cancel, .datepicker-clear, .datepicker-today, .datepicker-done, .datepicker-table td.is-today {
   color: var(--main-blue);
 }
+
+
+
+/* book list section */
 section.book-list {
   display: none;
 }
 
+
+/* book detail section */
 section.book-detail {
   display: none;
   width: 100%;
   height: auto;
 }
+
+
+.card.horizontal.detail > .card-image > .image {
+  height: 200px;
+  width: auto;
+  padding: 0;
+}
+
+.card.detail > .card-image.size {
+  padding: 0;
+}
+.card > .card-stacked > .card-content > .title {
+  font-weight: bolder;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 20px;
+}
+
+.card > .card-stacked > .card-content > .writer {
+  font-style: italic;
+}
+.book-list-wrapper {
+  cursor: pointer;
+}
+.copy {
+  background-color: rgb(77, 117, 156);
+  margin: auto;
+  line-height: 50px;
+  text-align: center;
+  font-style: italic;
+}
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.book-title{
+  font-weight: bolder;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 25px;
+}
+.book-writer{
+ font-style: italic;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 20px;
+
+}
+
+.publish-date{
+  font-style: italic;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 15px; 
+}
+.book-summary{
+  font-style: inherit;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 15px; 
+}
+h5{
+  margin: 5px;
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.authorImg .bio {
+  margin-top: 10px;
+  margin-right:5px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+
+}
+.buttons{
+  margin: auto;
+}
+
+
+
 
 /* page 1 styles */
 .Header {
@@ -116,8 +208,6 @@ section.book-detail {
   z-index: 20;
 }
 
-.autocomplete {
-}
 
 .Search_Bar {
   position: absolute;
@@ -221,78 +311,4 @@ section.book-detail {
   width: 738px;
   height: 304px;
   z-index: 8;
-}
-.card.horizontal.detail > .card-image > .image {
-  height: 200px;
-  width: auto;
-  padding: 0;
-}
-
-.card.detail > .card-image.size {
-  padding: 0;
-}
-.card > .card-stacked > .card-content > .title {
-  font-weight: bolder;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 20px;
-}
-
-.card > .card-stacked > .card-content > .writer {
-  font-style: italic;
-}
-.book-list-wrapper {
-  cursor: pointer;
-}
-.copy {
-  background-color: rgb(77, 117, 156);
-  margin: auto;
-  line-height: 50px;
-  text-align: center;
-  font-style: italic;
-}
-body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
-main {
-  flex: 1 0 auto;
-}
-
-.book-title{
-  font-weight: bolder;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 25px;
-}
-.book-writer{
- font-style: italic;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 20px;
-
-}
-
-.publish-date{
-  font-style: italic;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 15px; 
-}
-.book-summary{
-  font-style: inherit;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 15px; 
-}
-h5{
-  margin: 5px;
-  text-align: center;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-.authorImg .bio {
-  margin-top: 10px;
-  margin-right:5px;
-  font-family: Georgia, "Times New Roman", Times, serif;
-
-}
-.buttons{
-  margin: auto;
 }
