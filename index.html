@@ -1,132 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Book Listed</title>
+    <link
+      rel="icon"
+      href="assets/images/favicon.png"
+      sizes="16x16 32x32"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-	<title>Book Listed</title>
-	<link rel="icon" href="assets/images/favicon.png" sizes="16x16 32x32" type="image/png" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-	<link rel="stylesheet" href="assets/css/style.css" />
-</head>
+  <body>
+    <div class="buttons">
+      <button class="backToList waves-effect waves-light btn navyblue">Back to list</button>
+      <button class="backToStart waves-effect waves-light btn navyblue">Back to Start</button>
+    </div>
+    <main>
+      <!-- search -->
+      <section class="search">
+        <div class="search-wrapper">
+          <div class="search-container">
+            <div class="row">
+              <div class="col s12">
+                <div class="mainlogo"></div>
+                <p>Search NYTimes Best Sellers Lists</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <div class="input-field">
+                  <input
+                    type="text"
+                    id="autocomplete-input"
+                    class="autocomplete"
+                  />
+                  <label for="autocomplete-input">Pick a List</label>
+                </div>
+                <div class="input-field datepicker-wrapper">
+                  <input type="text" id="datepicker-input" class="datepicker" />
+                  <label for="datepicker-input">Pick a Date</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<body>
-<div class="buttons">
-	<button class="backToList">Back to list</button>
-	<button class="backToStart">Back to Start</button>
-</div>
-	<main>
-		<!-- search -->
-		<section class="search">
-			<div class="search-wrapper">
-				<div class="search-container">
-					<div class="row">
-						<div class="col s12">
-							<div class="mainlogo"></div>
-							<p>Search NYTimes Best Sellers Lists</p>
-						</div>
+      <!-- List of Book  -->
+      <section class="book-list">
+        <div class="container">
+          <div class="col s12 m7 book-list-wrapper"></div>
+        </div>
+      </section>
+
+      <!-- Display a book -->
+      <section class="col s12 m7 book-detail">
+        <div class="container">
+          <div class="card">
+            <div class="row informations">
+              <div class="card-image col s12 m5 l4">
+                <img class="book-image" />
+              </div>
+              <div class="card-stacked col s12 m7 l8 ">
+                <div class="card-content title-author">
+                  <p class="book-title">Title</p>
+                  <br />
+                  <p class="book-writer">Writer</p>
+                  <br />
+                  <p class="publish-date">Publish Date</p>
+                </div>
+                <div class="card-action">
+                  <div class="book-summary">
+                    <h6>Summary</h6>
+                    <p>
+                      It is a long established fact that a reader will be
+                      distracted by the readable content of a page when looking
+                      at its layout. The point of using Lorem Ipsum is that it
+                      has a more-or-less normal distribution of letters, as
+                      opposed to using 'Content here, content here', making it
+                      look like readable English. Many desktop publishing
+                      packages and web page editors now use Lorem Ipsum as their
+                      default model text, and a search for 'lorem ipsum' will
+                      uncover many web sites still in their infancy. Various
+                      versions have evolved over the years, sometimes by
+                      accident, sometimes on purpose (injected humour and the
+                      like).
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col s12">
+                <hr />
+                <div class="row author-info">
+					<div class="col s12 m12 l12">
+							<h5>About Writer</h5>
 					</div>
-					<div class="row">
-						<div class="col s12">
-							<div class="input-field">
-								<input type="text" id="autocomplete-input" class="autocomplete">
-								<label for="autocomplete-input">Pick a List</label>
-							</div>
-							<div class="input-field datepicker-wrapper">
-								<input type="text" id="datepicker-input" class="datepicker">
-								<label for="datepicker-input">Pick a Date</label>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
+                  
+                  <div class="col s12 m4 l3 authorImage">
+						
+                    <img class="authorImg">
+                  </div>
+                  <div class="col s12 m8 l9 bio">
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
 
+            <div class="row">
+              <div class="col m12">
+				  <h6 class="center">More by the Author</h6>
+                <!-- Carousel-->
+                <div class="carousel" id="suggest"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
 
-		<!-- List of Book  -->
-		<section class="book-list">
-			<div class="container">
-				<div class="col s12 m7 book-list-wrapper"></div>
-			</div>
-		</section>
+    <footer>
+      <div class="copy">
+        BooksListed an app build by Anjana H., Chris E., Ben P. and Peter A.
+      </div>
+    </footer>
 
-		<!-- Display a book -->
-		<section class="col s12 m7 book-detail">
-			<div class="container">
-				<div class="card">
-					<div class="row informations">
-						<div class="card-image col s12 m5 l4">
-						</div>
-						<div class="card-stacked col s12 m7 l8 ">
-							<div class="card-content title-author">
-								<p class="title">Title</p>
-								<br />
-								<p class="writer">Writer</p>
-								<br />
-								<p class="date">Publish Date</p>
-							</div>
-							<div class="card-action">
-								<div class="book-summary">
-									<h6>Summary</h6>
-									<p>
-										It is a long established fact that a reader will be
-										distracted by the readable content of a page when looking
-										at its layout. The point of using Lorem Ipsum is that it
-										has a more-or-less normal distribution of letters, as
-										opposed to using 'Content here, content here', making it
-										look like readable English. Many desktop publishing
-										packages and web page editors now use Lorem Ipsum as their
-										default model text, and a search for 'lorem ipsum' will
-										uncover many web sites still in their infancy. Various
-										versions have evolved over the years, sometimes by
-										accident, sometimes on purpose (injected humour and the
-										like).
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
+    <!--JavaScript at end of body for optimized loading-->
+    <script
+      src="http://code.jquery.com/jquery-3.3.1.js"
+      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-					<div class="row">
-						<div class="col s12">
-							<div class="author-info">
-								<h5>About Writer</h5>
-								<p class="bio"></p>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col m12">
-							<!-- Carousel-->
-							<div class="carousel" id="suggest">
-							</div>
-							
-						</div>
-					</div>
-					
-				</div>
-			</div>
-			
-		</section>
-		
-
-	</main>
-
-	<footer>
-		<div class="copy">
-			BooksListed an app build by Anjana H., Chris E., Ben P. and Peter A.
-		</div>
-	</footer>
-
-	<!--JavaScript at end of body for optimized loading-->
-	<script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-	 crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-	<script src="assets/scripts/app.js"></script>
-</body>
-
+    <script src="assets/scripts/app.js"></script>
+  </body>
 </html>

@@ -62,8 +62,33 @@ let bookApp = (function () {
 	let init = function () {
 		initAutoComplete();
 		// apiLibrary.getBookDetails('Dune');
-		// getBookReviews(888628);
+		getBookReviews(888628);
 	};
+	function initAutoComplete() {
+		let listOjb = {}
+		lists.map(function (item) { listOjb[item] = null; });
+		$("input.autocomplete").autocomplete({
+			data: listOjb,
+			minLength: 0,
+			autoClose: false,
+			onAutocomplete: initDatePicker
+		});
+	}
+
+	function initDatePicker(val) {
+		$('.datepicker-wrapper').slideDown(200, function(){
+			// console.log(val);
+			$(".datepicker").datepicker({
+				setDefaultDate: true,
+				autoClose: true,
+				format: 'yyyy-mm-dd',
+				onSelect: function(date){
+					getBookListFromAPI(date,val);
+				}
+			});
+		});
+	}
+
 	function initAutoComplete() {
 		let listOjb = {}
 		lists.map(function (item) { listOjb[item] = null; });
@@ -107,6 +132,7 @@ let bookApp = (function () {
 					$(".book-list-wrapper").empty(); //before filling - empty it
 					books.map(function (book) {
 						// console.log(book.title);
+						
 						createCard(book);
 					});
 				});
@@ -135,7 +161,6 @@ let bookApp = (function () {
 		</div>
 		</div>`;	
 		const detail = $(bookListTemplate);
-		// detail.attr('data-bookTitle', book.title);
 		detail.find(".title").text(book.title);
 		detail.find(".writer").text(book.contributor);
 		detail.find(".description").text(book.description);
@@ -145,18 +170,26 @@ let bookApp = (function () {
 		detail.on('click', function(e) {
 			e.preventDefault();
 			// createBookDetailCard(book.title);
-			switchToDetail(book.title);
+			switchToDetail(book.title, book);
 		});
 		bookListWrapperEl.append(detail);
 	}
 
-	function switchToDetail(title){
+	function switchToDetail(title, bookDetail){
 		$('.book-list').slideUp(200, function(){
 			$('.book-detail').slideDown(200, function(){
 				console.log('switchToDetail: ' + title);
+				displayBookInfo(bookDetail);
 				getBookDetail(title);
 			});
 		});
+	}
+
+	function displayBookInfo(bookInfo) {
+		console.log(bookInfo);
+		$(".book-title").text(bookInfo.title);
+		$(".book-writer").text(bookInfo.contributor);
+		$(".book-image").attr("src",bookInfo.book_image);
 	}
 
 	function getBookDetail(title){
@@ -169,12 +202,14 @@ let bookApp = (function () {
 		}).then(function(response){
 			let bookJSON = JSON.parse(response);
 			let thisBook = bookJSON.search.results.work[0];
-			console.log(thisBook);
+			 console.log(thisBook);
 			console.log('authorId: ' + thisBook.best_book.author.id);
 			console.log('bookId: ' + thisBook.best_book.id);
 			getAuthorBooks(thisBook.best_book.author.id);
 			getAuthorInfo(thisBook.best_book.author.id);
 			getBookReviews(thisBook.best_book.id);
+			var publisDate = `${thisBook.original_publication_month}/${thisBook.original_publication_day}/${thisBook.original_publication_year}`;
+			$(".publish-date").text("Publish date: "+publisDate);
 		});
 	}
 
@@ -212,9 +247,7 @@ let bookApp = (function () {
 			$('.book-detail .bio').html(authorJSON.author.about);
 			if(authorJSON.author.image_url){ 
 				let authorImg = authorJSON.author.image_url;
-				let authorImgEl = $('<img>');
-				authorImgEl.attr('src', authorImg);
-				authorImgEl.css('float', 'left');
+				$(".authorImg").attr('src', authorImg);
 				$('.author-info').prepend(authorImgEl);
 
 			}
@@ -283,6 +316,14 @@ let bookApp = (function () {
 		$('.book-list').slideUp(200, function(){
 			console.log('goBackToStart');
 		});
+		$(".book-list-wrapper").append(detail);
+		// // console.log(book);
+		// detail.on('click', function () {
+		// 	const publishDate = $("<p>").text(book.published_date);
+		// 	detail.find(".book-info").append(publishDate);
+		// 	// console.log("click")
+	
+		// });
 	}
 
 
