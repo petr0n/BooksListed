@@ -33,7 +33,7 @@ section {
 
 /* search section */
 .search-container {
-  width: 300px;
+  width: 400px;
 }
 .mainlogo {
   background-image: url("../../assets/images/logo.png");
@@ -42,6 +42,7 @@ section {
   background-repeat: no-repeat;
   height: 125px;
   width: 280px;
+  margin: 0 auto;
 }
 
 .mainlogo.small {
@@ -70,6 +71,7 @@ section.search .search-wrapper.list-selected {
   border: 1px solid var(--main-gray);
   background-color: var(--main-gray-lt);
   box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.1);
+  padding-left: 15px;
 }
 .search-wrapper input[type="text"].autocomplete:focus {
   border-bottom: 1px solid var(--main-red);
@@ -100,14 +102,25 @@ section.book-list {
   display: none;
 }
 
-
-/* book detail section */
-section.book-detail {
-  display: none;
-  width: 100%;
-  height: auto;
+.book-list-wrapper {
+  cursor: pointer;
+}
+/* .book-title {
+  font-size: 25px;
+} */
+.book-list .card.detail > .card-image.size {
+  padding: 0;
 }
 
+/* h5 {
+  margin: 5px;
+  text-align: center;
+} */
+
+
+.buttons{
+  margin: auto;
+}
 
 .card.horizontal.detail > .card-image > .image {
   height: 200px;
@@ -115,9 +128,6 @@ section.book-detail {
   padding: 0;
 }
 
-.card.detail > .card-image.size {
-  padding: 0;
-}
 .card > .card-stacked > .card-content > .title {
   font-weight: bolder;
   font-family: Georgia, "Times New Roman", Times, serif;
@@ -127,17 +137,8 @@ section.book-detail {
 .card > .card-stacked > .card-content > .writer {
   font-style: italic;
 }
-.book-list-wrapper {
-  cursor: pointer;
-}
-.copy {
-  background-color: rgb(77, 117, 156);
-  margin: auto;
-  line-height: 50px;
-  text-align: center;
-  font-style: italic;
-}
-body {
+
+/* body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
@@ -145,43 +146,41 @@ body {
 
 main {
   flex: 1 0 auto;
-}
+} */
 
-.book-title{
-  font-weight: bolder;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 25px;
-}
-.book-writer{
- font-style: italic;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 20px;
 
-}
 
-.publish-date{
+
+/* book detail section */
+section.book-detail {
+  display: none;
+  width: 100%;
+  height: auto;
+}
+.book-detail .card { 
+  padding: 50px;
+}
+.book-details .book-writer {
   font-style: italic;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 15px; 
+  font-size: 20px;
 }
-.book-summary{
-  font-style: inherit;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 15px; 
-}
-h5{
-  margin: 5px;
-  text-align: center;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-.authorImg .bio {
-  margin-top: 10px;
-  margin-right:5px;
-  font-family: Georgia, "Times New Roman", Times, serif;
 
+.book-details .publish-date {
+  font-style: italic;
+  font-size: 15px; 
 }
-.buttons{
-  margin: auto;
+.book-details .book-summary {
+  font-size: 15px; 
+}
+
+footer {
+  background-color: rgb(77, 117, 156);
+}
+footer .copy {
+  color: white;
+  line-height: 50px;
+  text-align: center;
+  font-style: italic;
 }
 
 

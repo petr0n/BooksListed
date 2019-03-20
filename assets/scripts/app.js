@@ -4,65 +4,65 @@ let bookApp = (function () {
 	const mockApiUrl = 'http://peterskitchen.co/xml2JSON.php';
 
 	let lists = [
-"Combined Print and E-Book Fiction",
-"Combined Print and E-Book Nonfiction",
-"Hardcover Fiction",
-"Hardcover Nonfiction",
-"Trade Fiction Paperback",
-"Mass Market Paperback",
-"Paperback Nonfiction",
-"E-Book Fiction",
-"E-Book Nonfiction",
-"Hardcover Advice",
-"Paperback Advice",
-"Advice How-To and Miscellaneous",
-"Chapter Books",
-"Childrens Middle Grade",
-"Childrens Middle Grade E-Book",
-"Childrens Middle Grade Hardcover",
-"Childrens Middle Grade Paperback",
-"Paperback Books",
-"Picture Books",
-"Series Books",
-"Young Adult",
-"Young Adult E-Book",
-"Young Adult Hardcover",
-"Young Adult Paperback",
-"Hardcover Graphic Books",
-"Paperback Graphic Books",
-"Manga",
-"Combined Print Fiction",
-"Combined Print Nonfiction",
-"Animals",
-"Audio Fiction",
-"Audio Nonfiction",
-"Business Books",
-"Celebrities",
-"Crime and Punishment",
-"Culture",
-"Education",
-"Espionage",
-"Expeditions Disasters and Adventures",
-"Fashion Manners and Customs",
-"Food and Fitness",
-"Games and Activities",
-"Hardcover Business Books",
-"Health",
-"Humor",
-"Indigenous Americans",
-"Relationships",
-"Paperback Business Books",
-"Family",
-"Hardcover Political Books",
-"Race and Civil Rights",
-"Religion Spirituality and Faith",
-"Science",
-"Sports",
-"Travel"];
+		"Combined Print and E-Book Fiction",
+		"Combined Print and E-Book Nonfiction",
+		"Hardcover Fiction",
+		"Hardcover Nonfiction",
+		"Trade Fiction Paperback",
+		"Mass Market Paperback",
+		"Paperback Nonfiction",
+		"E-Book Fiction",
+		"E-Book Nonfiction",
+		"Hardcover Advice",
+		"Paperback Advice",
+		"Advice How-To and Miscellaneous",
+		"Chapter Books",
+		"Childrens Middle Grade",
+		"Childrens Middle Grade E-Book",
+		"Childrens Middle Grade Hardcover",
+		"Childrens Middle Grade Paperback",
+		"Paperback Books",
+		"Picture Books",
+		"Series Books",
+		"Young Adult",
+		"Young Adult E-Book",
+		"Young Adult Hardcover",
+		"Young Adult Paperback",
+		"Hardcover Graphic Books",
+		"Paperback Graphic Books",
+		"Manga",
+		"Combined Print Fiction",
+		"Combined Print Nonfiction",
+		"Animals",
+		"Audio Fiction",
+		"Audio Nonfiction",
+		"Business Books",
+		"Celebrities",
+		"Crime and Punishment",
+		"Culture",
+		"Education",
+		"Espionage",
+		"Expeditions Disasters and Adventures",
+		"Fashion Manners and Customs",
+		"Food and Fitness",
+		"Games and Activities",
+		"Hardcover Business Books",
+		"Health",
+		"Humor",
+		"Indigenous Americans",
+		"Relationships",
+		"Paperback Business Books",
+		"Family",
+		"Hardcover Political Books",
+		"Race and Civil Rights",
+		"Religion Spirituality and Faith",
+		"Science",
+		"Sports",
+		"Travel"
+	];
+	lists.sort();
 	let init = function () {
 		initAutoComplete();
-		// apiLibrary.getBookDetails('Dune');
-		// getBookReviews(888628);
 	};
 	function initAutoComplete() {
 		let listOjb = {}
@@ -131,8 +131,6 @@ let bookApp = (function () {
 				$('section.book-list').slideDown(300, function(){
 					$(".book-list-wrapper").empty(); //before filling - empty it
 					books.map(function (book) {
-						// console.log(book.title);
-						
 						createCard(book);
 					});
 				});
@@ -144,15 +142,15 @@ let bookApp = (function () {
 	function createCard(book) {
 		const bookListWrapperEl = $(".book-list-wrapper");
 		const bookListTemplate = `<div class="card detail row hoverable">
-		<div class="card-image col s12 m3 l2 size ">
+		<div class="card-image col s12 m4 l4 size ">
 		<img
 			class="image"
 			src=""
 		/>
 		</div>
-		<div class="card-stacked col s12 m9 l10 ">
+		<div class="card-stacked col s12 m8 l8">
 		<div class="card-content book-info">
-			<p class="title"></p>
+			<h3 class="title"></h3>
 			<p class="writer"></p>
 		</div>
 		<div class="card-action">
@@ -178,7 +176,7 @@ let bookApp = (function () {
 	function switchToDetail(isbn, bookDetail){
 		$('.book-list').slideUp(200, function(){
 			$('.book-detail').slideDown(200, function(){
-				console.log('switchToDetail: ' + isbn);
+				// console.log('switchToDetail: ' + isbn);
 				displayBookInfo(bookDetail);
 				getBookDetail(isbn);
 			});
@@ -203,6 +201,7 @@ let bookApp = (function () {
 		}).then(function(response){
 			let bookJSON = JSON.parse(response);
 			let thisBook = bookJSON.book;
+			console.log('thisBook');
 			console.log(thisBook);
 			if (thisBook) {
 				let bookId = thisBook.id;
@@ -213,10 +212,12 @@ let bookApp = (function () {
 				getAuthorBooks(authorId);
 				getAuthorInfo(authorId);
 				getBookReviews(bookId);
-				$(".publish-date").text("Publish date: "+publishDate);
+				$('.book-summary').html(thisBook.description);
+				$(".publish-date").text("Publish date: " + publishDate);
+				$('.no-book').remove();
 			} else {
 				// can't find book
-				$('.book-detail .card').html('No book found! Oh no!');
+				$('.book-detail .card').html('<h3 class="no-book">No book found! Oh no!</h3>');
 			}
 		});
 	}
@@ -237,8 +238,7 @@ let bookApp = (function () {
 			$('.book-detail .bio').html(authorJSON.author.about);
 			if(authorJSON.author.image_url){ 
 				let authorImg = authorJSON.author.image_url;
-				let authorImgEl = $(".authorImg").attr('src', authorImg);
-				$('.author-info').prepend(authorImgEl);
+				$(".authorImg").attr('src', authorImg);
 			}
 		});
 	}
@@ -255,8 +255,8 @@ let bookApp = (function () {
 		}).done(function(response){
 			let booksJSON = JSON.parse(response);
 			let bookList = booksJSON.author.books.book;
-			// console.log('getAuthorBooks:');
-			// console.log(booksJSON);
+			console.log('getAuthorBooks:');
+			console.log(booksJSON);
 			carouselEl.empty();
 			let listLen = 20;
 			if (bookList.length != undefined) {
