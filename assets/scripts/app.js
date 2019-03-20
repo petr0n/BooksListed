@@ -175,12 +175,12 @@ let bookApp = (function () {
 		bookListWrapperEl.append(detail);
 	}
 
-	function switchToDetail(title, bookDetail){
+	function switchToDetail(isbn, bookDetail){
 		$('.book-list').slideUp(200, function(){
 			$('.book-detail').slideDown(200, function(){
-				console.log('switchToDetail: ' + title);
+				console.log('switchToDetail: ' + isbn);
 				displayBookInfo(bookDetail);
-				getBookDetail(title);
+				getBookDetail(isbn);
 			});
 		});
 	}
@@ -192,8 +192,9 @@ let bookApp = (function () {
 		$(".book-image").attr("src",bookInfo.book_image);
 	}
 
-	function getBookDetail(title){
-		let apiUrl = 'https://www.goodreads.com/search/index.xml?key=ceicGimSCSzGALUEWdy1Q&q=' + encodeURI(title);
+	function getBookDetail(isbn){
+		let apiUrl = 'https://www.goodreads.com/book/isbn/' + isbn + '?key=ceicGimSCSzGALUEWdy1Q';
+		//let apiUrl = 'https://www.goodreads.com/search/index.xml?key=ceicGimSCSzGALUEWdy1Q&q=' + encodeURI(title);
 		$.ajax({
 			url: mockApiUrl,
 			method: 'POST',
@@ -201,16 +202,18 @@ let bookApp = (function () {
 			dataType: 'text'
 		}).then(function(response){
 			let bookJSON = JSON.parse(response);
-			let thisBook = bookJSON.search.results.work;
+			let thisBook = bookJSON.book;
 			console.log(thisBook);
 			if (thisBook) {
-				console.log('authorId: ' + thisBook.best_book.author.id);
-				console.log('bookId: ' + thisBook.best_book.id);
-				getAuthorBooks(thisBook.best_book.author.id);
-				getAuthorInfo(thisBook.best_book.author.id);
-				getBookReviews(thisBook.best_book.id);
-				var publisDate = `${thisBook.original_publication_month}/${thisBook.original_publication_day}/${thisBook.original_publication_year}`;
-				$(".publish-date").text("Publish date: "+publisDate);
+				let bookId = thisBook.id;
+				let authorId = thisBook.authors.author.id;
+				let publishDate = `${thisBook.publication_month}/${thisBook.publication_day}/${thisBook.publication_year}`;
+				console.log('authorId: ' + bookId);
+				console.log('bookId: ' + bookId);
+				getAuthorBooks(authorId);
+				getAuthorInfo(authorId);
+				getBookReviews(bookId);
+				$(".publish-date").text("Publish date: "+publishDate);
 			} else {
 				// can't find book
 				$('.book-detail .card').html('No book found! Oh no!');
@@ -234,7 +237,7 @@ let bookApp = (function () {
 			$('.book-detail .bio').html(authorJSON.author.about);
 			if(authorJSON.author.image_url){ 
 				let authorImg = authorJSON.author.image_url;
-				$(".authorImg").attr('src', authorImg);
+				let authorImgEl = $(".authorImg").attr('src', authorImg);
 				$('.author-info').prepend(authorImgEl);
 			}
 		});
