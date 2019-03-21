@@ -182,12 +182,19 @@ footer {
 }
 footer .copy {
   color: white;
-  line-height: 50px;
+  padding: 20px;
   text-align: center;
   font-style: italic;
 }
 
-
+@media screen and (max-width: 786px) {
+  .book-detail .card {
+    padding: 10px;
+  }
+  h2.book-title {
+    font-size: 2em;
+  }
+}
 
 
 /* page 1 styles */

@@ -129,8 +129,9 @@ let bookApp = (function () {
 			if (books) {
 				$('section .search-wrapper').addClass('list-selected');
 				$('.mainlogo').addClass('small'); 
-				$('section.book-list').slideDown(300, function(){
+				$('section.book-list').slideDown(600, function(){
 					$(".book-list-wrapper").empty(); //before filling - empty it
+					showButton(1);
 					books.map(function (book) {
 						createCard(book);
 					});
@@ -175,8 +176,8 @@ let bookApp = (function () {
 	}
 
 	function switchToDetail(isbn, bookDetail){
-		$('.book-list').slideUp(200, function(){
-			$('.book-detail').slideDown(200, function(){
+		$('.book-list').slideUp(600, function(){
+			$('.book-detail').slideDown(600, function(){
 				// console.log('switchToDetail: ' + isbn);
 				displayBookInfo(bookDetail);
 				getBookDetail(isbn);
@@ -192,7 +193,7 @@ let bookApp = (function () {
 	}
 
 	function getBookDetail(isbn){
-		showButton();
+		showButton(1);
 		let apiUrl = 'https://www.goodreads.com/book/isbn/' + isbn + '?key=ceicGimSCSzGALUEWdy1Q';
 		//let apiUrl = 'https://www.goodreads.com/search/index.xml?key=ceicGimSCSzGALUEWdy1Q&q=' + encodeURI(title);
 		$.ajax({
@@ -209,6 +210,7 @@ let bookApp = (function () {
 				let bookId = thisBook.id;
 				let authorId = thisBook.authors.author.id;
 				let publishDate = `${thisBook.publication_month}/${thisBook.publication_day}/${thisBook.publication_year}`;
+				// let link1El = $('<a>').attr('href="' + thisBook.buy_links.buy_link[0]. + "');
 				console.log('authorId: ' + bookId);
 				console.log('bookId: ' + bookId);
 				getAuthorBooks(authorId);
@@ -311,20 +313,26 @@ let bookApp = (function () {
 	$('.backToStart').on('click', goBackToStart);
 
 	function goBackToList(){
-		$('.book-detail').slideUp(200, function(){
-			$('.book-list').slideDown(200, function(){
+		$('.book-detail').slideUp(600, function(){
+			$('.book-list').slideDown(600, function(){
 				console.log('goBackToList');
 			});
 		})
 	}
 	function goBackToStart(){
-		$('.book-list').slideUp(200, function(){
+		$('.book-list').slideUp(600, function(){
 			console.log('goBackToStart');
 			$('.search-wrapper').removeClass('list-selected');
+			showButton(0);
+			$('#datepicker-input').val('');
 		});
 	}
-	function showButton() {
-		$('.fixed-action-btn').toggle();
+	function showButton(show) {
+		if (show){
+			$('.fixed-action-btn').fadeIn(400);
+		} else {
+			$('.fixed-action-btn').fadeOut(400);
+		}
 	}
 
 
