@@ -1,7 +1,8 @@
 
 
 let bookApp = (function () {
-	const mockApiUrl = 'http://peterskitchen.co/xml2JSON.php';
+	// const mockApiUrl = 'http://peterskitchen.co/xml2JSON.php';
+	const mockApiUrl = 'https://chriscastle.com/proxy/peterproxy.php';
 
 	let lists = [
 		"Combined Print and E-Book Fiction",
